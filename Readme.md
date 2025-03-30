@@ -1,4 +1,4 @@
-<!-- -- Fr -->
+-- Fr
 
 "Vous incarnez un chasseur de monstres itinérant, un mercenaire solitaire arpentant un monde ravagé par le "Miasme". Chaque expédition est une lutte pour la survie : traquez des créatures cauchemardesques, récoltez leurs précieuses ressources et revendez-les pour améliorer votre équipement et perfectionner vos techniques de combat.
 
@@ -8,7 +8,7 @@ Traversez ces terres corrompues avec votre épée, votre bouclier et votre "Lamp
 
 Tuez, vendez, survivez… jusqu’à ce que la mort vous rattrape"
 
-<!-- -- En -->
+-- En
 
 "You play as a wandering monster hunter, a lone mercenary roaming a world ravaged by the 'Miasma.' Every expedition is a fight for survival: track down nightmarish creatures, harvest their precious resources, and sell them to upgrade your gear and hone your combat skills.
 
