@@ -56,7 +56,7 @@ function ExportAllSpriteAnimation:new(spriteManager)
     spriteManager:addAnimation("giantWormAnimation", "giantWorm", 64, 64, 0.2),
     spriteManager:addAnimation("bansheeAnimation", "banshee", 64, 64, 0.2),
     spriteManager:addAnimation("witchAnimation", "witch", 64, 64, 0.2),
-    spriteManager:addAnimation("oldSlimeAnimation", "oldSlime", 64, 64, 0.2),
+    spriteManager:addAnimation("slimeAnimation", "slime", 64, 64, 0.2),
     spriteManager:addAnimation("revenantAnimation", "revenant", 64, 64, 0.2),
     spriteManager:addAnimation("gluttonAnimation", "glutton", 64, 64, 0.2),
     spriteManager:addAnimation("gnollAnimation", "gnoll", 64, 64, 0.2),
