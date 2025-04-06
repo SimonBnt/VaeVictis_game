@@ -22,7 +22,6 @@ local windowWidth, windowHeight = love.window.getDesktopDimensions()
 
 local resources, spriteManager, exportAllSpriteAnimation
 local gameState = true
--- local monsterDefeated = false
 
 -- stocker les animations en cour --
 damageAnimations = {}
@@ -39,39 +38,22 @@ function love.load()
     Controls.loadFunction()
     resources = Resources:new()
     spriteManager = SpriteManager:new(resources)
+
+    -- all sprite here
     exportAllSpriteAnimation = ExportAllSpriteAnimation:new(spriteManager)
 
     -- hero and monster instances initialization
     hero = Hero:new()
     monster = Monster:new()
-
-    -- -- -- interface
-    -- spriteManager:addAnimation("coinAnimation", "coin", 32, 32, 0.1)
-
-    -- -- -- hero
-    -- spriteManager:addAnimation("heroAnimation", "hero", 64, 64, 0.1)
-
-    -- -- -- monster
-    -- spriteManager:addAnimation("skeletonAnimation", "skeleton", 64, 64, 0.2)
-    -- spriteManager:addAnimation("giantRatAnimation", "giantRat", 64, 64, 0.2)
-    -- spriteManager:addAnimation("wolfAnimation", "wolf", 64, 64, 0.2)
-    -- spriteManager:addAnimation("slimeAnimation", "oldSlime", 64, 64, 0.2)
 end
 
                             ---- // ---- UPDATE ---- // ---- 
 
 function love.update(dt)
     if gameState then
-
         -- Character update function
-        hero:updateAttackCooldown(dt)
-        monster:updateAttackCooldown(dt)
-
-        -- Hero update function
-        hero:heroUpdateFunction(monster, ShowDamageDealtAnimation)
-
-        -- Monster update function
-        monster:monsterUpdateFunction(hero, ShowDamageDealtAnimation, dt)
+        hero:update(monster, dt, ShowDamageDealtAnimation)
+        monster:update(hero, dt, ShowDamageDealtAnimation)
 
         -- animation loop if animation currently in "damageAnimation{}"
         ShowDamageDealtAnimation:animationLoop(dt)
@@ -121,7 +103,7 @@ function love.update(dt)
         spriteManager:updateAnimation("giantWorm", dt)
         spriteManager:updateAnimation("banshee", dt)
         spriteManager:updateAnimation("witch", dt)
-        spriteManager:updateAnimation("oldSlime", dt)
+        spriteManager:updateAnimation("slime", dt)
         spriteManager:updateAnimation("revenant", dt)
         spriteManager:updateAnimation("giantWasp", dt)
         spriteManager:updateAnimation("glutton", dt)
@@ -186,22 +168,19 @@ function love.draw()
     Grid.draw()
     spriteManager:drawAnimation("coinAnimation", 0, 0)
     
+    -- hero
+    hero:draw(64)
+    hero:drawSpec()
+
+    -- monster
+    monster:draw(512)
+
     -- draw the hero sprite
-    spriteManager:drawSpriteCentered("hero", hero.posX, hero.posY - 4, 1.5,1.5)
+    spriteManager:drawSpriteCentered("hero", hero.posX, hero.posY - 4, 2,2)
 
     -- sprite sheet animation draw function
     local monsterAnimationKey = monster.spriteKey .. "Animation"
     spriteManager:drawAnimation(monsterAnimationKey, monster.posX - 32, monster.posY, 1, 1)
-    
-    -- hero
-    hero:drawStatut(64)
-    Hero:isBlocking()
-    Hero:showCoinInPocket()
-    
-    -- monster
-    monster:drawStatut(512)
-    Monster:isPreparingAtk()
-    Monster:monsterIsDefeated(hero)
 
    -- damage animation loop draw function
     ShowDamageDealtAnimation:drawAnimationLoop()
