@@ -1,7 +1,6 @@
 ---- // ---- MODULES ---- // ---- 
 
 local Character = require("modules.character.Character")
-local ShowDamageDealtAnimation = require("modules.interface.ShowDamageDealtAnimation")
 
 ---- // ---- LOCAL VAR ---- // ---- 
 
