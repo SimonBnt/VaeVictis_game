@@ -13,7 +13,7 @@ setmetatable(Hero, {__index = Character})
 
 function Hero:new()
     local hero = Character:new(
-        "",     -- name
+        "Héro",     -- name
         160,        -- posX
         208,        -- posY
         100,        -- currentHealth
@@ -25,13 +25,13 @@ function Hero:new()
         0,          -- currentXp
         100,        -- maxXp
         1,          -- lvl
-        50,         -- atk
-        1,          -- def
-        1,          -- int
-        1,          -- dex
+        2,         -- atk
+        2,          -- def
+        2,          -- int
+        2,          -- dex
         1,          -- crit
-        50,          -- atkSpeed
-        20,         -- coin
+        3,          -- atkSpeed
+        0,         -- coin
         false       -- isMonster
     )
 

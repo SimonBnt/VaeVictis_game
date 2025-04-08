@@ -12,6 +12,8 @@ local Grid = require("modules.interface.Grid")
 local Resources = require("modules.sprite.Resources")
 local SpriteManager = require("modules.sprite.SpriteManager")
 local ExportAllSpriteAnimation = require("modules.sprite.inc.ExportAllSpriteAnimation")
+local Particle = require("modules.interface.Particle")
+local ShowTxt = require("modules.interface.ShowTxt")
 
 ---- // ---- SCREEN PARAMETERS ---- // ---- 
 
@@ -26,13 +28,15 @@ local gameState = true
 -- stocker les animations en cour --
 damageAnimations = {}
 
+monsterRespawnTimer = 0
+
                             ---- // ---- LOAD ---- // ---- 
 
 function love.load()
     -- screen parameter + push setup
     love.graphics.setDefaultFilter("nearest", "nearest")
 
-    Push:setupScreen(virtualWidth, virtualHeight, windowWidth, windowHeight, {fullscreen = false, vsync = true, resizable = true, pixelperfect = true})
+    Push:setupScreen(virtualWidth, virtualHeight, windowWidth, windowHeight, {fullscreen = true, vsync = true, resizable = true, pixelperfect = true})
 
     -- load every resources and modules
     Controls.loadFunction()
@@ -53,7 +57,18 @@ function love.update(dt)
     if gameState then
         -- Character update function
         hero:update(monster, dt, ShowDamageDealtAnimation)
-        monster:update(hero, dt, ShowDamageDealtAnimation)
+
+        if monster and monster.isDead then
+            monsterRespawnTimer = monsterRespawnTimer + dt
+            
+            if monsterRespawnTimer >= 2 then
+                monsterRespawnTimer = 0
+                monster = Monster:new() -- Créer un nouveau monstre
+                ShowTxt.trigger("Un " .. monster.name .. " apparaît !", 300, 100)
+            end
+        else
+            monster:update(hero, dt, ShowDamageDealtAnimation)
+        end
 
         -- animation loop if animation currently in "damageAnimation{}"
         ShowDamageDealtAnimation:animationLoop(dt)
@@ -145,6 +160,10 @@ function love.update(dt)
         spriteManager:updateAnimation("kraken", dt)
         spriteManager:updateAnimation("troll", dt)
         spriteManager:updateAnimation("demon", dt)
+
+        Particle:update(dt)
+
+        ShowTxt.update(dt)
     end
 end
 
@@ -165,7 +184,7 @@ function love.draw()
 ---- // ---- START TO DRAW ---- // ---- 
 
     -- interface
-    Grid.draw()
+    -- Grid.draw()
     spriteManager:drawAnimation("coinAnimation", 0, 0)
     
     -- hero
@@ -176,14 +195,19 @@ function love.draw()
     monster:draw(512)
 
     -- draw the hero sprite
-    spriteManager:drawSpriteCentered("hero", hero.posX, hero.posY - 4, 2,2)
+    spriteManager:drawSpriteCentered("hero", hero.posX, hero.posY - 4, 1,1)
 
     -- sprite sheet animation draw function
     local monsterAnimationKey = monster.spriteKey .. "Animation"
     spriteManager:drawAnimation(monsterAnimationKey, monster.posX - 32, monster.posY, 1, 1)
 
-   -- damage animation loop draw function
+    -- damage animation loop draw function
     ShowDamageDealtAnimation:drawAnimationLoop()
+
+    -- Draw particles
+    Particle:draw()
+    -- Draw active messages
+    ShowTxt.draw()
 
 ---- // ---- PUSH FINISH ---- // ---- 
 
