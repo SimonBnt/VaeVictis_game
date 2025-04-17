@@ -25,12 +25,12 @@ function Hero:new()
         0,          -- currentXp
         100,        -- maxXp
         1,          -- lvl
-        2,         -- atk
+        10,         -- atk
         2,          -- def
         2,          -- int
         2,          -- dex
         1,          -- crit
-        3,          -- atkSpeed
+        50,          -- atkSpeed
         0,         -- coin
         false       -- isMonster
     )

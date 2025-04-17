@@ -62,6 +62,15 @@ function Particle:draw()
 
         if p.type == "circle" then
             love.graphics.circle("fill", p.posX, p.posY, p.size)
+        elseif p.type == "slash" then
+            -- Calcule la position finale (fin du trait) basée sur la vitesse
+            local endX = p.posX + p.vX * (p.lifeTime / p.initialLifeTime) * 2
+            local endY = p.posY + p.vY * (p.lifeTime / p.initialLifeTime) * 2
+            
+            -- Dessine une ligne pour l'effet de tranchant
+            love.graphics.setLineWidth(p.size)
+            love.graphics.line(p.posX, p.posY, endX, endY)
+            love.graphics.setLineWidth(1)
         end
     end
 

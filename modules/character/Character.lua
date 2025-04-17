@@ -3,6 +3,8 @@
 local ShowDamageDealtAnimation = require("modules.interface.ShowDamageDealtAnimation")
 local ShowTxt = require("modules.interface.ShowTxt")
 local Particle = require("modules.interface.Particle")
+local SlashEffect = require("modules.interface.SlashEffect")
+local SpriteManager = require("modules.sprite.SpriteManager")
 
 ---- // ---- LOCAL VAR ---- // ---- 
 
@@ -67,7 +69,8 @@ function Character:new(name, posX, posY, currentHealth, maxHealth, currentMana, 
         
         parryCooldown = 0,
         monsterAttackTimer = isMonster and 0 or 0,
-        stunTimer = 0
+        stunTimer = 0,
+        heavyAtkTimer = 0,
     }
 
     setmetatable(character, self)
@@ -257,28 +260,35 @@ end
 
 -- Gestion de l'attaque pour le héros
 function Character:performHeroAttack(target, dt, ShowDamageDealtAnimation)
-    if self.canAtk and target.currentHealth > 0 then
+    if target.currentHealth <= 0 then
+        return
+    end
+    
+    -- Priorité à l'attaque lourde si disponible
+    if self.canPerformHeavyAtk and self.canAtk then
+        self:heavyAttack(target, ShowDamageDealtAnimation)
+        self.canAtk = false
+        self.canFightBack = false
+        self.canPerformHeavyAtk = false
+        return
+    end
+    
+    -- Sinon, vérifier l'attaque normale ou contre-attaque
+    if self.canAtk and self.currentEnergy >= self.energyUsedByAtk then
         if self.canCounterAtk then
             self:counterAttack(target, ShowDamageDealtAnimation)
-            self.canAtk = false
-            return
-        elseif self.currentEnergy >= self.energyUsedByAtk and not self.canCounterAtk then
+        else
             self:normalAttack(target, ShowDamageDealtAnimation)
-            self.canAtk = false
-            return
         end
-    end
-
-    if self.canFightBack and target.currentHealth > 0 then
-        self:fightBackAtk(target, ShowDamageDealtAnimation)
+        self.canAtk = false
         self.canFightBack = false
         return
     end
-
-    if self.canPerformHeavyAtk and target.currentHealth > 0 then
-        self:heavyAttack(target, ShowDamageDealtAnimation)
-        self.canPerformHeavyAtk = false
-        self.canAtk = false
+    
+    -- Si aucune attaque normale n'est disponible, vérifier la riposte
+    if self.canFightBack then
+        self:fightBackAtk(target, ShowDamageDealtAnimation)
+        self.canFightBack = false
         return
     end
 end
@@ -298,6 +308,9 @@ function Character:normalAttack(target, ShowDamageDealtAnimation)
     ShowDamageDealtAnimation.trigger(damage, target.posX, target.posY)
 
     ShowTxt.trigger("Vous attaquez " .. target.name, 200, 0)
+
+    local animationName = target.isMonster and "monster_idle" or "hero_idle"
+    SlashEffect.trigger(target, self.SpriteManager, animationName)
 
     if not target.isDead and target.currentEnergy <= target.energyUsedByTakingAtk and not target.isStunned then
         self:stun(target)
@@ -531,10 +544,24 @@ function Character:updateEnergyBar(dt)
     end
 end
 
-function Character:checkIfHeavyAtkIsAvailable()
+function Character:checkIfHeavyAtkIsAvailable(dt)
     if self.canFightBack and self.canAtk then
-        self.canPerformHeavyAtk = true
-        ShowTxt.trigger("Vous pouvez frapper fort ", 200, 200)
+        if not self.canPerformHeavyAtk then
+            self.canPerformHeavyAtk = true
+            ShowTxt.trigger("Vous pouvez frapper fort ", 200, 200)
+            self.heavyAtkTimer = 0  -- Réinitialiser le timer quand l'opportunité commence
+        end
+        
+        self.heavyAtkTimer = self.heavyAtkTimer + dt
+        
+        if self.heavyAtkTimer >= 1 then
+            self.canPerformHeavyAtk = false
+            self.heavyAtkTimer = 0
+            ShowTxt.trigger("Vous avez raté l'occasion de frapper fort ", 200, 200)
+        end
+    else
+        -- Si les conditions ne sont plus remplies, désactiver l'attaque lourde
+        self.canPerformHeavyAtk = false
     end
 end
 
@@ -557,7 +584,7 @@ function Character:update(target, dt, ShowDamageDealtAnimation)
                 self:performAtk(target, dt, ShowDamageDealtAnimation)
             end
             
-            self:checkIfHeavyAtkIsAvailable()
+            self:checkIfHeavyAtkIsAvailable(dt)
             self:parry(target, dt)
         end
 
