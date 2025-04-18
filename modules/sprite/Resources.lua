@@ -9,7 +9,16 @@ function Resources:new()
         coin = "assets/img/spriteSheet/interface/coin_spriteSheet.png",
 
         -- hero
-        hero = "assets/img/sprite/hero/testBloodBorne_sprite_x64.png",
+        hero = "assets/img/sprite/hero/testSamurai_sprite_x64.png",
+        -- hero = "assets/img/sprite/hero/testBloodBorne_sprite_x64.png",
+
+        -- Item
+
+        -- consumable
+
+        -- potion
+
+        healthPotion = "assets/img/sprite/item/consumable/potion/healthPotion.png",
 
         -- monster class
         -- F class

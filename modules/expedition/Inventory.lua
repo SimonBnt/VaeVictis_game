@@ -1,3 +1,5 @@
+local Potion = require("modules.expedition.inc.Potion")
+
 local Inventory = {}
 Inventory.__index = Inventory
 
@@ -39,16 +41,18 @@ function Inventory:draw()
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.print(self.currentWeight .. "/" .. self.maxWeight, self.posX, self.posY)
     
-
+    self:drawPotionCount()
     self:drawItems()
 end
 
 function Inventory:addItem(item)
-    if self.slot[item] then
-        self.slot[item] = self.slot[item] + 1
-        self.currentWeight = self.currentWeight + item.weight
+    if not self.slot[item.name] then
+        self.slot[item.name] = {
+            data = item,
+            count = 1
+        }
     else
-        self.slot[item] = 1
+        self.slot[item.name].count = self.slot[item.name].count + 1
         self.currentWeight = self.currentWeight + item.weight
     end
 end
@@ -60,13 +64,26 @@ function Inventory:drawItems()
     local lineHeight = 14
     local i = 0
 
-    for item, count in pairs(self.slot) do
-        love.graphics.print("- " .. item.name .. " x" .. count, x, y + i * lineHeight)
+    for itemName, itemEntry in pairs(self.slot) do
+        love.graphics.print("- " .. itemEntry.data.name .. " x" .. itemEntry.count, x, y + i * lineHeight)
         i = i + 1
     end
 end
 
+function Inventory:getItemByName(itemName)
+    return self.slot[itemName]
+end
 
+function Inventory:drawPotionCount()
+    local potionEntry = self:getItemByName("Health potion")
+    
+    if potionEntry then
+        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.print("x" .. potionEntry.count, Potion.healthPotion.posX, Potion.healthPotion.posY)
+    else
+        love.graphics.print("x0", Potion.healthPotion.posX, Potion.healthPotion.posY)
+    end
+end
 
 -- function Inventory:drawSlots()
 --     -- Supposons que nous avons une grille de 3x3 emplacements

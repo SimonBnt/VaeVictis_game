@@ -7,6 +7,7 @@ local SlashEffect = require("modules.interface.SlashEffect")
 local SpriteManager = require("modules.sprite.SpriteManager")
 local Item = require("modules.expedition.Item")
 local manaShardsByClass = require("modules.expedition.inc.ManaShard")
+local Potion = require("modules.expedition.inc.Potion")
 
 ---- // ---- LOCAL VAR ---- // ---- 
 
@@ -499,6 +500,8 @@ function Character:getReward(monster)
         end
         
     end
+
+    self.inventory:addItem(Potion.healthPotion)
 end
 
 function Character:updateReward(dt)
@@ -627,17 +630,5 @@ end
 function Character:draw(posX)
     self:drawStatut(posX)
 end
-
--- function Character:useInventoryItem(itemIndex)
---     if self.inventory then
---         local result = self.inventory:useItem(itemIndex, self)
---         if result then
---             -- Feedback visuel ou sonore
---             ShowTxt.trigger("Objet utilisé!", 300, 100)
---         else
---             ShowTxt.trigger("Impossible d'utiliser cet objet", 300, 100)
---         end
---     end
--- end
 
 return Character

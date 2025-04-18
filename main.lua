@@ -15,6 +15,7 @@ local ExportAllSpriteAnimation = require("modules.sprite.inc.ExportAllSpriteAnim
 local Particle = require("modules.interface.Particle")
 local ShowTxt = require("modules.interface.ShowTxt")
 local Inventory = require("modules.expedition.Inventory")
+local Potion = require("modules.expedition.inc.Potion")
 
 ---- // ---- SCREEN PARAMETERS ---- // ---- 
 
@@ -190,6 +191,7 @@ function love.draw()
     -- interface
     -- Grid.draw()
     spriteManager:drawAnimation("coinAnimation", 0, 0)
+    Potion.drawHealthPotion()
     inventory:draw()
     
     -- hero
