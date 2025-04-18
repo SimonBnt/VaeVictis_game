@@ -9,6 +9,7 @@ function Inventory:new(posX, posY, width, height, radius)
     self.width = 150
     self.height = 100
     self.radius = 4
+    self.weight = 100
 
     self.isFull = false
 
@@ -36,16 +37,27 @@ function Inventory:draw()
     self:drawItems()
 end
 
+function Inventory:addItem(itemName)
+    if self.slot[itemName] then
+        self.slot[itemName] = self.slot[itemName] + 1
+    else
+        self.slot[itemName] = 1
+    end
+end
+
 function Inventory:drawItems()
     love.graphics.setColor(1, 1, 1, 1)
     local x = self.posX + 10
     local y = self.posY + 10
     local lineHeight = 14
+    local i = 0
 
-    for i, item in ipairs(self.slot) do
-        love.graphics.print("- " .. item, x, y + (i - 1) * lineHeight)
+    for itemName, count in pairs(self.slot) do
+        love.graphics.print("- " .. itemName .. " x" .. count, x, y + i * lineHeight)
+        i = i + 1
     end
 end
+
 
 
 -- function Inventory:drawSlots()

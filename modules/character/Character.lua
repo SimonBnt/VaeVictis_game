@@ -502,7 +502,7 @@ function Character:getReward(monster)
         local manaShard = manaShardsByClass[monster.class]
         
         if manaShard then
-            table.insert(self.inventory.slot, manaShard)
+            self.inventory:addItem(manaShard)
             ShowTxt.trigger("Objet obtenu : " .. manaShard, 300, 160)
         end
         
