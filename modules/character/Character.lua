@@ -5,6 +5,8 @@ local ShowTxt = require("modules.interface.ShowTxt")
 local Particle = require("modules.interface.Particle")
 local SlashEffect = require("modules.interface.SlashEffect")
 local SpriteManager = require("modules.sprite.SpriteManager")
+local Item = require("modules.expedition.Item")
+local manaShardsByClass = require("modules.expedition.inc.ManaShard")
 
 ---- // ---- LOCAL VAR ---- // ---- 
 
@@ -489,21 +491,11 @@ function Character:getReward(monster)
 
     -- Ajout d’un objet dans l’inventaire selon la classe du monstre
     if self.inventory then
-        local manaShardsByClass = {
-            f = "Mana Residue",             --Résidut de mana
-            e = "Raw Mana Shard",           --Éclat de mana brut"
-            d = "Polished Mana Shard",      --Éclat de mana poli
-            c = "Mana Shard",               --Éclat de mana
-            b = "Greater Mana Shard",       --Éclat de mana supérieur
-            a = "Overflowing Mana Shard",   --Éclat débordant de mana
-            s = "Pure Mana"                 --Mana pur
-        }
-        
         local manaShard = manaShardsByClass[monster.class]
         
         if manaShard then
             self.inventory:addItem(manaShard)
-            ShowTxt.trigger("Objet obtenu : " .. manaShard, 300, 160)
+            -- ShowTxt.trigger("Objet obtenu : " .. manaShard, 300, 160)
         end
         
     end

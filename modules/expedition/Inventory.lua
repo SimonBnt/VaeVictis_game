@@ -1,7 +1,7 @@
 local Inventory = {}
 Inventory.__index = Inventory
 
-function Inventory:new(posX, posY, width, height, radius)
+function Inventory:new()
     local self = setmetatable({}, Inventory)
 
     self.posX = 300
@@ -9,7 +9,8 @@ function Inventory:new(posX, posY, width, height, radius)
     self.width = 150
     self.height = 100
     self.radius = 4
-    self.weight = 100
+    self.currentWeight = 0
+    self.maxWeight = 100
 
     self.isFull = false
 
@@ -33,15 +34,22 @@ function Inventory:draw()
     -- Dessiner le titre
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.print("Inventaire", self.posX + 10, self.posY - 20)
+    
+    -- Dessiner le poids max que peut contenir l'inventaire'
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.print(self.currentWeight .. "/" .. self.maxWeight, self.posX, self.posY)
+    
 
     self:drawItems()
 end
 
-function Inventory:addItem(itemName)
-    if self.slot[itemName] then
-        self.slot[itemName] = self.slot[itemName] + 1
+function Inventory:addItem(item)
+    if self.slot[item] then
+        self.slot[item] = self.slot[item] + 1
+        self.currentWeight = self.currentWeight + item.weight
     else
-        self.slot[itemName] = 1
+        self.slot[item] = 1
+        self.currentWeight = self.currentWeight + item.weight
     end
 end
 
@@ -52,8 +60,8 @@ function Inventory:drawItems()
     local lineHeight = 14
     local i = 0
 
-    for itemName, count in pairs(self.slot) do
-        love.graphics.print("- " .. itemName .. " x" .. count, x, y + i * lineHeight)
+    for item, count in pairs(self.slot) do
+        love.graphics.print("- " .. item.name .. " x" .. count, x, y + i * lineHeight)
         i = i + 1
     end
 end
