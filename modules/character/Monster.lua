@@ -29,6 +29,7 @@ function Monster:new()
     elseif throw == 6 then
         selectedMonster = MonsterList.C[5]
     end
+
     -- local selectedClass
 
     -- local classThrow = math.random(1, 100)
@@ -217,6 +218,8 @@ function Monster:new()
         selectedMonster.crit,               -- crit
         selectedMonster.atkSpeed,           -- atkSpeed
         selectedMonster.coin,               -- coin
+        selectedMonster.soul,               -- soul
+        selectedMonster.class,              -- class
         true                                -- isMonster
     )
     
