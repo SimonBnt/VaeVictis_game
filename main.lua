@@ -14,6 +14,7 @@ local SpriteManager = require("modules.sprite.SpriteManager")
 local ExportAllSpriteAnimation = require("modules.sprite.inc.ExportAllSpriteAnimation")
 local Particle = require("modules.interface.Particle")
 local ShowTxt = require("modules.interface.ShowTxt")
+local Inventory = require("modules.expedition.Inventory")
 
 ---- // ---- SCREEN PARAMETERS ---- // ---- 
 
@@ -46,8 +47,11 @@ function love.load()
     -- all sprite here
     exportAllSpriteAnimation = ExportAllSpriteAnimation:new(spriteManager)
 
+    -- inventory
+    inventory = Inventory:new()
+
     -- hero and monster instances initialization
-    hero = Hero:new()
+    hero = Hero:new(inventory)
     monster = Monster:new()
 end
 
@@ -186,6 +190,7 @@ function love.draw()
     -- interface
     -- Grid.draw()
     spriteManager:drawAnimation("coinAnimation", 0, 0)
+    inventory:draw()
     
     -- hero
     hero:draw(64)

@@ -17,66 +17,65 @@ local statutBarWitdh = 64
 local Character = {}
 Character.__index = Character
 
-function Character:new(name, posX, posY, currentHealth, maxHealth, currentMana, maxMana, currentEnergy, maxEnergy, currentXp, maxXp, lvl, atk, def, int, dex, crit, atkSpeed, coin, isMonster)
-    local character = {
-        name = name,        --name
-        posX = posX,                            --posX
-        posY = posY,                            --posY
-        currentHealth = currentHealth,          --currentHealth
-        maxHealth = maxHealth,                  --maxHealth
-        currentMana = currentMana,              --currentMana
-        maxMana = maxMana,                      --maxMana
-        currentEnergy = currentEnergy,          --currentEnergy
-        maxEnergy = maxEnergy,                  --maxEnergy
-        currentXp = currentXp,                  --currentXp
-        maxXp = isMonster and nil or maxXp,     --maxXp
-        lvl = lvl,                              --lvl
-        atk = atk,                              --atk
-        def = def,                              --def
-        int = int,                              --def
-        dex = dex,                              --dex
-        crit = crit,                            --crit
-        atkSpeed = atkSpeed * dex,                    --atkSpeed
-        coin = coin,                            --coin
-        isMonster = isMonster,
+function Character:new(name, posX, posY, currentHealth, maxHealth, currentMana, maxMana, currentEnergy, maxEnergy, currentXp, maxXp, lvl, atk, def, int, dex, crit, atkSpeed, coin, soul, class, isMonster, inventory)
+    local self = setmetatable({}, Character)
 
-        isDead = false,
-        isLowLvl = false,
+    self.name = name                            --name
+    self.posX = posX                            --posX
+    self.posY = posY                            --posY
+    self.currentHealth = currentHealth          --currentHealth
+    self.maxHealth = maxHealth                  --maxHealth
+    self.currentMana = currentMana              --currentMana
+    self.maxMana = maxMana                      --maxMana
+    self.currentEnergy = currentEnergy          --currentEnergy
+    self.maxEnergy = maxEnergy                  --maxEnergy
+    self.currentXp = currentXp                  --currentXp
+    self.maxXp = isMonster and nil or maxXp     --maxXp
+    self.lvl = lvl                              --lvl
+    self.atk = atk                              --atk
+    self.def = def                              --def
+    self.int = int                              --int
+    self.dex = dex                              --dex
+    self.crit = crit                            --crit
+    self.atkSpeed = atkSpeed * dex              --atkSpeed
+    self.coin = coin                            --coin
+    self.soul = isMonster and soul or nil       --soul
+    self.class = isMonster and class or nil     --class
+    self.isMonster = isMonster
 
-        attackCooldown = 0,
+    self.inventory = inventory
 
-        canAtk = false,
-        canCounterAtk = isMonster and nil or false,
-        canFightBack = isMonster and nil or false,
-        canPerformHeavyAtk = isMonster and nil or false,
+    self.isDead = false
+    self.isLowLvl = false
 
-        -- isAttacking = false,
-        isStunned = false,
-        isAboutToAtk = isMonster and false or nil,
-        
-        hasParried = false,
-        
-        healthStatutBarPosY = 4,
-        manaStatutBarPosY = 10,
-        energyStatutBarPosY = 16,
-        xpStatutBarPosY = 22,
-        
-        energyUsedByAtk = 20,
-        energyUsedByTakingAtk = 10,
-        energyUsedByMissingParry = 40,
+    self.attackCooldown = 0
 
-        -- Timer
-        
-        parryCooldown = 0,
-        monsterAttackTimer = isMonster and 0 or 0,
-        stunTimer = 0,
-        heavyAtkTimer = 0,
-    }
+    self.canAtk = false
+    self.canCounterAtk = isMonster and nil or false
+    self.canFightBack = isMonster and nil or false
+    self.canPerformHeavyAtk = isMonster and nil or false
 
-    setmetatable(character, self)
-    self.__index = self
+    self.isStunned = false
+    self.isAboutToAtk = isMonster and false or nil
+    
+    self.hasParried = false
+    
+    self.healthStatutBarPosY = 4
+    self.manaStatutBarPosY = 10
+    self.energyStatutBarPosY = 16
+    self.xpStatutBarPosY = 22
+    
+    self.energyUsedByAtk = 20
+    self.energyUsedByTakingAtk = 10
+    self.energyUsedByMissingParry = 40
 
-    return character
+    -- Timers
+    self.parryCooldown = 0
+    self.monsterAttackTimer = isMonster and 0 or 0
+    self.stunTimer = 0
+    self.heavyAtkTimer = 0
+
+    return self
 end
 
 ---- // ---- CHARCATER FUNCTION ---- // ---- 
@@ -316,10 +315,10 @@ function Character:normalAttack(target, ShowDamageDealtAnimation)
         self:stun(target)
     end
 
-    if target.currentHealth <= 0 then
-        target.isDead = true
-        self:getReward(target)
-    end
+    -- if target.currentHealth <= 0 then
+    --     target.isDead = true
+    --     self:getReward(target)
+    -- end
 end
 
 -- Attaque lourde du héros
@@ -340,10 +339,10 @@ function Character:heavyAttack(target, ShowDamageDealtAnimation)
         self:stun(target)
     end
 
-    if target.currentHealth <= 0 then
-        target.isDead = true
-        self:getReward(target)
-    end
+    -- if target.currentHealth <= 0 then
+    --     target.isDead = true
+    --     self:getReward(target)
+    -- end
 end
 
 -- Attaque riposte du héros
@@ -361,11 +360,11 @@ function Character:fightBackAtk(target, ShowDamageDealtAnimation)
     self.isStunned = false
     self.canFightBack = false
 
-    if target.currentHealth <= 0 then
-        target.isDead = true
-        ShowTxt.trigger(target.name .. " est mort", 300, 200)
-        self:getReward(target)
-    end
+    -- if target.currentHealth <= 0 then
+    --     target.isDead = true
+    --     ShowTxt.trigger(target.name .. " est mort", 300, 200)
+    --     self:getReward(target)
+    -- end
 end
 
 -- Contre-attaque du héros
@@ -385,11 +384,11 @@ function Character:counterAttack(target, ShowDamageDealtAnimation)
     self.isStunned = false
     self.canCounterAtk = false
 
-    if target.currentHealth <= 0 then
-        target.isDead = true
-        ShowTxt.trigger(target.name .. " est mort", 300, 200)
-        self:getReward(target)
-    end
+    -- if target.currentHealth <= 0 then
+    --     target.isDead = true
+    --     ShowTxt.trigger(target.name .. " est mort", 300, 200)
+    --     self:getReward(target)
+    -- end
 end
 
 -- Gestion de l'attaque pour le monstre
@@ -438,10 +437,10 @@ function Character:performMonsterAttack(target, dt, ShowDamageDealtAnimation)
                     self:resetMonsterAttack()
                 end
         
-                if target.currentHealth <= 0 then
-                    target.isDead = true
-                    ShowTxt.trigger(target.name .. " est mort", 300, 200)
-                end
+                -- if target.currentHealth <= 0 then
+                --     target.isDead = true
+                --     ShowTxt.trigger(target.name .. " est mort", 300, 200)
+                -- end
         
                 self:resetMonsterAttack()
 
@@ -487,6 +486,27 @@ function Character:getReward(monster)
 
     self.pendingXp = self.pendingXp or 0 + xpReward
     self.pendingCoin = self.pendingCoin or 0 + coinReward
+
+    -- Ajout d’un objet dans l’inventaire selon la classe du monstre
+    if self.inventory then
+        local manaShardsByClass = {
+            f = "Mana Residue",             --Résidut de mana
+            e = "Raw Mana Shard",           --Éclat de mana brut"
+            d = "Polished Mana Shard",      --Éclat de mana poli
+            c = "Mana Shard",               --Éclat de mana
+            b = "Greater Mana Shard",       --Éclat de mana supérieur
+            a = "Overflowing Mana Shard",   --Éclat débordant de mana
+            s = "Pure Mana"                 --Mana pur
+        }
+        
+        local manaShard = manaShardsByClass[monster.class]
+        
+        if manaShard then
+            self.inventory:addItem(manaShard)
+            ShowTxt.trigger("Objet obtenu : " .. manaShard, 300, 160)
+        end
+        
+    end
 end
 
 function Character:updateReward(dt)
@@ -571,6 +591,8 @@ function Character:update(target, dt, ShowDamageDealtAnimation)
     self:updateReward(dt)
     self:updateStunState(target, dt)
 
+    
+
     if not self.isDead then
         self:updateAttackCooldown(dt)
 
@@ -593,10 +615,37 @@ function Character:update(target, dt, ShowDamageDealtAnimation)
             self:performAtk(target, dt, ShowDamageDealtAnimation)
         end
     end
+
+    if self.isMonster then
+        if self.currentHealth <= 0 then
+            self.isDead = true
+            ShowTxt.trigger(self.name .. " est mort", 300, 200)
+            target:getReward(self)
+        end
+    else
+        if self.currentHealth <= 0 then
+            self.isDead = true
+            ShowTxt.trigger(self.name .. " est mort", 300, 200)
+        end
+    end
 end
+
+---- // ---- CHARCATER DRAW FUNCTION GLOBAL CALL ---- // ---- 
 
 function Character:draw(posX)
     self:drawStatut(posX)
 end
+
+-- function Character:useInventoryItem(itemIndex)
+--     if self.inventory then
+--         local result = self.inventory:useItem(itemIndex, self)
+--         if result then
+--             -- Feedback visuel ou sonore
+--             ShowTxt.trigger("Objet utilisé!", 300, 100)
+--         else
+--             ShowTxt.trigger("Impossible d'utiliser cet objet", 300, 100)
+--         end
+--     end
+-- end
 
 return Character

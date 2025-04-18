@@ -10,7 +10,7 @@ local Hero = {}
 Hero.__index = Hero
 setmetatable(Hero, {__index = Character})
 
-function Hero:new()
+function Hero:new(inventory)
     local hero = Character:new(
         "Héro",     -- name
         160,        -- posX
@@ -34,6 +34,8 @@ function Hero:new()
         false       -- isMonster
     )
 
+    hero.inventory = inventory
+    
     setmetatable(hero, self)
     return hero
 end

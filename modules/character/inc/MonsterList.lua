@@ -23,6 +23,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "f",
+
+            loot = {
+                
+            },
+
             spriteKey = "giantRat"
         },
         {
@@ -45,6 +52,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "f",
+
+            loot = {
+                
+            },
+
             spriteKey = "bat"
         },
         {
@@ -67,6 +81,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "f",
+
+            loot = {
+                
+            },
+
             spriteKey = "wisp"
         },
         {
@@ -89,6 +110,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "f",
+
+            loot = {
+                
+            },
+
             spriteKey = "manEaterSpider"
         },
         {
@@ -111,6 +139,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "f",
+
+            loot = {
+                
+            },
+
             spriteKey = "orbit"
         },
         {
@@ -133,6 +168,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "f",
+
+            loot = {
+                
+            },
+
             spriteKey = "leavingMushroom"
         },
         {
@@ -155,6 +197,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "f",
+
+            loot = {
+                
+            },
+
             spriteKey = "juvenileSylvester"
         },
         {
@@ -177,6 +226,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "f",
+
+            loot = {
+                
+            },
+
             spriteKey = "mutantLarva"
         },
         {
@@ -199,6 +255,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "f",
+
+            loot = {
+                
+            },
+
             spriteKey = "spiritInBottle"
         },
         {
@@ -221,6 +284,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "f",
+
+            loot = {
+                
+            },
+
             spriteKey = "cursedSkull"
         }
     },
@@ -248,6 +318,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "e",
+
+            loot = {
+                
+            },
+
             spriteKey = "grimlin"
         },
         {
@@ -270,6 +347,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "e",
+
+            loot = {
+                
+            },
+
             spriteKey = "livingDead"
         },
         {
@@ -292,6 +376,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "e",
+
+            loot = {
+                
+            },
+
             spriteKey = "carnivorousPlant"
         },
         {
@@ -314,6 +405,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "e",
+
+            loot = {
+                
+            },
+
             spriteKey = "goliathSnail"
         },
         {
@@ -336,6 +434,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "e",
+
+            loot = {
+                
+            },
+
             spriteKey = "murloc"
         },
         {
@@ -358,6 +463,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "e",
+
+            loot = {
+                
+            },
+
             spriteKey = "brazier"
         },
         {
@@ -380,6 +492,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "e",
+
+            loot = {
+                
+            },
+
             spriteKey = "juvenileSlime"
         },
         {
@@ -402,6 +521,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "e",
+
+            loot = {
+                
+            },
+
             spriteKey = "ectoplasm"
         },
         {
@@ -424,6 +550,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "e",
+
+            loot = {
+                
+            },
+
             spriteKey = "juvenileKraken"
         },
         {
@@ -446,6 +579,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "e",
+
+            loot = {
+                
+            },
+
             spriteKey = "leprechaun"
         }
     },
@@ -474,6 +614,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "d",
+
+            loot = {
+                
+            },
+
             spriteKey = "wolf"
         },
         {
@@ -496,6 +643,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "d",
+
+            loot = {
+                
+            },
+
             spriteKey = "amalgam"
         },
         {
@@ -518,6 +672,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "d",
+
+            loot = {
+                
+            },
+
             spriteKey = "giantScorpion"
         },
         {
@@ -540,6 +701,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "d",
+
+            loot = {
+                
+            },
+
             spriteKey = "boa"
         },
         {
@@ -562,6 +730,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "d",
+
+            loot = {
+                
+            },
+
             spriteKey = "goblin"
         },
         {
@@ -584,6 +759,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "d",
+
+            loot = {
+                
+            },
+
             spriteKey = "skeleton"
         },
         {
@@ -606,6 +788,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "d",
+
+            loot = {
+                
+            },
+
             spriteKey = "wildBoar"
         },
         {
@@ -628,6 +817,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "d",
+
+            loot = {
+                
+            },
+
             spriteKey = "enchantedStump"
         },
         {
@@ -650,6 +846,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "d",
+
+            loot = {
+                
+            },
+
             spriteKey = "kobold"
         },
         {
@@ -672,6 +875,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "d",
+
+            loot = {
+                
+            },
+
             spriteKey = "warriorToad"
         }
     },
@@ -699,6 +909,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "c",
+
+            loot = {
+                
+            },
+
             spriteKey = "ghoul"
         },
         {
@@ -721,6 +938,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "c",
+
+            loot = {
+                
+            },
+
             spriteKey = "giantWorm"
         },
         {
@@ -743,6 +967,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "c",
+
+            loot = {
+                
+            },
+
             spriteKey = "banshee"
         },
         {
@@ -765,6 +996,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "c",
+
+            loot = {
+                
+            },
+
             spriteKey = "witch"
         },
         {
@@ -787,6 +1025,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "c",
+
+            loot = {
+                
+            },
+
             spriteKey = "slime"
         },
         {
@@ -809,6 +1054,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "c",
+
+            loot = {
+                
+            },
+
             spriteKey = "revenant"
         },
         {
@@ -831,6 +1083,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "c",
+
+            loot = {
+                
+            },
+
             spriteKey = "giantWasp"
         },
         {
@@ -853,6 +1112,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "c",
+
+            loot = {
+                
+            },
+
             spriteKey = "glutton"
         },
         {
@@ -875,6 +1141,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "c",
+
+            loot = {
+                
+            },
+
             spriteKey = "gnoll"
         },
         {
@@ -897,6 +1170,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "c",
+
+            loot = {
+                
+            },
+
             spriteKey = "hags"
         }
     },
@@ -924,6 +1204,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "b",
+
+            loot = {
+                
+            },
+
             spriteKey = "mimic"
         },
         {
@@ -946,6 +1233,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "b",
+
+            loot = {
+                
+            },
+
             spriteKey = "hobgoblin"
         },
         {
@@ -968,6 +1262,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "b",
+
+            loot = {
+                
+            },
+
             spriteKey = "failedExperiment"
         },
         {
@@ -990,6 +1291,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "b",
+
+            loot = {
+                
+            },
+
             spriteKey = "imp"
         },
         {
@@ -1012,6 +1320,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "b",
+
+            loot = {
+                
+            },
+
             spriteKey = "courtesan"
         },
         {
@@ -1034,6 +1349,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "b",
+
+            loot = {
+                
+            },
+
             spriteKey = "mandrake"
         },
         {
@@ -1056,6 +1378,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "b",
+
+            loot = {
+                
+            },
+
             spriteKey = "chimera"
         },
         {
@@ -1078,6 +1407,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "b",
+
+            loot = {
+                
+            },
+
             spriteKey = "swampCreature"
         },
         {
@@ -1100,6 +1436,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "b",
+
+            loot = {
+                
+            },
+
             spriteKey = "sylvester"
         },
         {
@@ -1122,6 +1465,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "b",
+
+            loot = {
+                
+            },
+
             spriteKey = "orc"
         }
     },
@@ -1149,6 +1499,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "a",
+
+            loot = {
+                
+            },
+
             spriteKey = "reaper"
         },
         {
@@ -1171,6 +1528,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "a",
+
+            loot = {
+                
+            },
+
             spriteKey = "ent"
         },
         {
@@ -1193,6 +1557,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "a",
+
+            loot = {
+                
+            },
+
             spriteKey = "vampire"
         },
         {
@@ -1215,6 +1586,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "a",
+
+            loot = {
+                
+            },
+
             spriteKey = "reptilian"
         },
         {
@@ -1237,6 +1615,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "a",
+
+            loot = {
+                
+            },
+
             spriteKey = "abomination"
         },
         {
@@ -1259,6 +1644,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "a",
+
+            loot = {
+                
+            },
+
             spriteKey = "ogre"
         },
         {
@@ -1281,6 +1673,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "a",
+
+            loot = {
+                
+            },
+
             spriteKey = "golem"
         },
         {
@@ -1303,6 +1702,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "a",
+
+            loot = {
+                
+            },
+
             spriteKey = "gorgon"
         },
         {
@@ -1325,6 +1731,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "a",
+
+            loot = {
+                
+            },
+
             spriteKey = "succubus"
         },
         {
@@ -1347,6 +1760,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "a",
+
+            loot = {
+                
+            },
+
             spriteKey = "centaur"
         }
     },
@@ -1374,6 +1794,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "s",
+
+            loot = {
+                
+            },
+
             spriteKey = "griffin"
         },
         {
@@ -1396,6 +1823,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "s",
+
+            loot = {
+                
+            },
+
             spriteKey = "werewolf"
         },
         {
@@ -1418,6 +1852,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "s",
+
+            loot = {
+                
+            },
+
             spriteKey = "raptor"
         },
         {
@@ -1440,6 +1881,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "s",
+
+            loot = {
+                
+            },
+
             spriteKey = "cyclops"
         },
         {
@@ -1462,6 +1910,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "s",
+
+            loot = {
+                
+            },
+
             spriteKey = "wyvern"
         },
         {
@@ -1484,6 +1939,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "s",
+
+            loot = {
+                
+            },
+
             spriteKey = "minotaur"
         },
         {
@@ -1506,6 +1968,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "s",
+
+            loot = {
+                
+            },
+
             spriteKey = "berserker"
         },
         {
@@ -1528,6 +1997,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "s",
+
+            loot = {
+                
+            },
+
             spriteKey = "kraken"
         },
         {
@@ -1550,6 +2026,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "s",
+
+            loot = {
+                
+            },
+
             spriteKey = "troll"
         },
         {
@@ -1572,6 +2055,13 @@ local MonsterList = {
             crit = 1,               --crit
             atkSpeed = 10,          --atkSpeed
             coin = 10,              --coin
+            soul = 10,
+            class = "s",
+
+            loot = {
+                
+            },
+
             spriteKey = "demon"
         }
     }
