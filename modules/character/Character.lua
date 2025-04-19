@@ -54,31 +54,42 @@ function Character:new(name, posX, posY, currentHealth, maxHealth, currentMana, 
     self.isLowLvl = false
 
     self.attackCooldown = 0
-
+    
     self.canAtk = false
     self.canCounterAtk = isMonster and nil or false
     self.canFightBack = isMonster and nil or false
     self.canPerformHeavyAtk = isMonster and nil or false
+    
+    self.heavyAtkTimer = 0
 
-    self.isStunned = false
+    -- monster atk
     self.isAboutToAtk = isMonster and false or nil
+    self.monsterAttackTimer = isMonster and 0 or 0
     
-    self.hasParried = false
-    
+    -- bars position
     self.healthStatutBarPosY = 4
     self.manaStatutBarPosY = 10
-    self.energyStatutBarPosY = 16
     self.xpStatutBarPosY = 22
+    self.energyStatutBarPosY = 16
     
+    -- energy
     self.energyUsedByAtk = 20
     self.energyUsedByTakingAtk = 10
     self.energyUsedByMissingParry = 40
-
-    -- Timers
+    
+    -- parry
     self.parryCooldown = 0
-    self.monsterAttackTimer = isMonster and 0 or 0
+    self.hasParried = false
+
+    -- stun
+    self.isStunned = false
     self.stunTimer = 0
-    self.heavyAtkTimer = 0
+
+    -- knockback
+    self.velocityX = 0
+    self.knockbackTimer = 0
+    self.knockbackOriginX = nil
+    self.isReturningFromKnockback = false
 
     return self
 end
@@ -208,10 +219,49 @@ function Character:takeDamage(atk, def)
 
     if self.currentHealth > 0 then
         self.currentHealth = math.max(0, self.currentHealth - damage)
+
+        self.knockbackOriginX = self.posX
+
+        if self.isMonster then
+            self.velocityX = 20
+        else
+            self.velocityX = -20
+        end
+
+        self.knockbackTimer = 0.8
+        self.isReturningFromKnockback = false
     end
 
     Particle:create("circle", 5, 20, -50, 50, -50, 20, 0.5, 1.5, 1, 4, self.posX, self.posY, 100, true, {1,0,0})
     return damage
+end
+
+function Character:updateKnockBackTimer(dt)
+    if self.knockbackTimer > 0 then
+        self.posX = self.posX + self.velocityX * dt
+        self.knockbackTimer = self.knockbackTimer - dt
+
+        -- gradually slow down the velocity
+        self.velocityX = self.velocityX * 0.9
+
+        if self.knockbackTimer <= 0 then
+            self.knockbackTimer = 0
+            self.isReturningFromKnockback = true
+        end
+    end
+    
+    if self.isReturningFromKnockback then
+        local speed = 20
+        local direction = self.knockbackOriginX - self.posX
+    
+        if math.abs(direction) < 1 then
+            self.posX = self.knockbackOriginX
+            self.isReturningFromKnockback = false
+            self.knockbackOriginX = nil
+        else
+            self.posX = self.posX + direction * dt * speed
+        end
+    end
 end
 
 function Character:stun(target)
@@ -417,11 +467,6 @@ function Character:performMonsterAttack(target, dt, ShowDamageDealtAnimation)
                     self:resetMonsterAttack()
                 end
         
-                -- if target.currentHealth <= 0 then
-                --     target.isDead = true
-                --     ShowTxt.trigger(target.name .. " est mort", 300, 200)
-                -- end
-        
                 self:resetMonsterAttack()
 
                 return 
@@ -565,8 +610,7 @@ end
 function Character:update(target, dt, ShowDamageDealtAnimation)
     self:updateReward(dt)
     self:updateStunState(target, dt)
-
-    
+    self:updateKnockBackTimer(dt)
 
     if not self.isDead then
         self:updateAttackCooldown(dt)
