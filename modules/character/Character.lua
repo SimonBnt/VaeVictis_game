@@ -1,12 +1,15 @@
 ---- // ---- MODULES ---- // ---- 
 
 local ShowDamageDealtAnimation = require("modules.interface.ShowDamageDealtAnimation")
+local Control = require("modules.control.Control")
 local ShowTxt = require("modules.interface.ShowTxt")
 local Particle = require("modules.interface.Particle")
 local SlashEffect = require("modules.interface.SlashEffect")
 local SpriteManager = require("modules.sprite.SpriteManager")
 local Item = require("modules.expedition.Item")
 local manaShardsByClass = require("modules.expedition.inc.ManaShard")
+local Potion = require("modules.expedition.inc.Potion")
+local Tools = require("modules.expedition.inc.Tools")
 
 ---- // ---- LOCAL VAR ---- // ---- 
 
@@ -51,31 +54,42 @@ function Character:new(name, posX, posY, currentHealth, maxHealth, currentMana, 
     self.isLowLvl = false
 
     self.attackCooldown = 0
-
+    
     self.canAtk = false
     self.canCounterAtk = isMonster and nil or false
     self.canFightBack = isMonster and nil or false
     self.canPerformHeavyAtk = isMonster and nil or false
+    
+    self.heavyAtkTimer = 0
 
-    self.isStunned = false
+    -- monster atk
     self.isAboutToAtk = isMonster and false or nil
+    self.monsterAttackTimer = isMonster and 0 or 0
     
-    self.hasParried = false
-    
+    -- bars position
     self.healthStatutBarPosY = 4
     self.manaStatutBarPosY = 10
-    self.energyStatutBarPosY = 16
     self.xpStatutBarPosY = 22
+    self.energyStatutBarPosY = 16
     
+    -- energy
     self.energyUsedByAtk = 20
     self.energyUsedByTakingAtk = 10
     self.energyUsedByMissingParry = 40
-
-    -- Timers
+    
+    -- parry
     self.parryCooldown = 0
-    self.monsterAttackTimer = isMonster and 0 or 0
+    self.hasParried = false
+
+    -- stun
+    self.isStunned = false
     self.stunTimer = 0
-    self.heavyAtkTimer = 0
+
+    -- knockback
+    self.velocityX = 0
+    self.knockbackTimer = 0
+    self.knockbackOriginX = nil
+    self.isReturningFromKnockback = false
 
     return self
 end
@@ -176,19 +190,19 @@ function Character:drawStatut(posX)
     end
 end
 
-function Character:drawSpec()
-    love.graphics.print("xp : " .. self.currentXp, 20, 120)
-    love.graphics.print("maxXp : " .. self.maxXp, 20, 130)
-    love.graphics.print("maxHealth : " .. self.maxHealth, 20, 140)
-    love.graphics.print("maxMana : " .. self.maxMana, 20, 150)
-    love.graphics.print("maxEnergy : " .. self.maxEnergy, 20, 160)
-    love.graphics.print("atk : " .. self.atk, 20, 170)
-    love.graphics.print("def : " .. self.def, 20, 180)
-    love.graphics.print("int : " .. self.int, 20, 190)
-    love.graphics.print("dex : " .. self.dex, 20, 200)
-    love.graphics.print("crit : " .. self.crit, 20, 210)
-    love.graphics.print("attackSpedd : " .. self.atkSpeed, 20, 220)
-end
+-- function Character:drawSpec()
+--     love.graphics.print("xp : " .. self.currentXp, 20, 120)
+--     love.graphics.print("maxXp : " .. self.maxXp, 20, 130)
+--     love.graphics.print("maxHealth : " .. self.maxHealth, 20, 140)
+--     love.graphics.print("maxMana : " .. self.maxMana, 20, 150)
+--     love.graphics.print("maxEnergy : " .. self.maxEnergy, 20, 160)
+--     love.graphics.print("atk : " .. self.atk, 20, 170)
+--     love.graphics.print("def : " .. self.def, 20, 180)
+--     love.graphics.print("int : " .. self.int, 20, 190)
+--     love.graphics.print("dex : " .. self.dex, 20, 200)
+--     love.graphics.print("crit : " .. self.crit, 20, 210)
+--     love.graphics.print("attackSpedd : " .. self.atkSpeed, 20, 220)
+-- end
 
 ---- // ---- CHARCATER STATUT FUNCTION ---- // ---- 
 
@@ -205,11 +219,49 @@ function Character:takeDamage(atk, def)
 
     if self.currentHealth > 0 then
         self.currentHealth = math.max(0, self.currentHealth - damage)
+
+        self.knockbackOriginX = self.posX
+
+        if self.isMonster then
+            self.velocityX = 20
+        else
+            self.velocityX = -20
+        end
+
+        self.knockbackTimer = 0.8
+        self.isReturningFromKnockback = false
     end
 
-    Particle:create("circle", 10, 100, -50, 50, -80, -20, 0.5, 1.5, 1, 4, self.posX, self.posY, 100, true, {1,0,0})
-
+    Particle:create("circle", 5, 20, -50, 50, -50, 20, 0.5, 1.5, 1, 4, self.posX, self.posY, 100, true, {1,0,0})
     return damage
+end
+
+function Character:updateKnockBackTimer(dt)
+    if self.knockbackTimer > 0 then
+        self.posX = self.posX + self.velocityX * dt
+        self.knockbackTimer = self.knockbackTimer - dt
+
+        -- gradually slow down the velocity
+        self.velocityX = self.velocityX * 0.9
+
+        if self.knockbackTimer <= 0 then
+            self.knockbackTimer = 0
+            self.isReturningFromKnockback = true
+        end
+    end
+    
+    if self.isReturningFromKnockback then
+        local speed = 20
+        local direction = self.knockbackOriginX - self.posX
+    
+        if math.abs(direction) < 1 then
+            self.posX = self.knockbackOriginX
+            self.isReturningFromKnockback = false
+            self.knockbackOriginX = nil
+        else
+            self.posX = self.posX + direction * dt * speed
+        end
+    end
 end
 
 function Character:stun(target)
@@ -266,13 +318,13 @@ function Character:performHeroAttack(target, dt, ShowDamageDealtAnimation)
     end
     
     -- Priorité à l'attaque lourde si disponible
-    if self.canPerformHeavyAtk and self.canAtk then
-        self:heavyAttack(target, ShowDamageDealtAnimation)
-        self.canAtk = false
-        self.canFightBack = false
-        self.canPerformHeavyAtk = false
-        return
-    end
+    -- if self.canPerformHeavyAtk and self.canAtk then
+    --     self:heavyAttack(target, ShowDamageDealtAnimation)
+    --     self.canAtk = false
+    --     self.canFightBack = false
+    --     self.canPerformHeavyAtk = false
+    --     return
+    -- end
     
     -- Sinon, vérifier l'attaque normale ou contre-attaque
     if self.canAtk and self.currentEnergy >= self.energyUsedByAtk then
@@ -308,19 +360,12 @@ function Character:normalAttack(target, ShowDamageDealtAnimation)
     local damage = target:takeDamage(self.atk, target.def)
     ShowDamageDealtAnimation.trigger(damage, target.posX, target.posY)
 
-    ShowTxt.trigger("Vous attaquez " .. target.name, 200, 0)
-
     local animationName = target.isMonster and "monster_idle" or "hero_idle"
     SlashEffect.trigger(target, self.SpriteManager, animationName)
 
     if not target.isDead and target.currentEnergy <= target.energyUsedByTakingAtk and not target.isStunned then
         self:stun(target)
     end
-
-    -- if target.currentHealth <= 0 then
-    --     target.isDead = true
-    --     self:getReward(target)
-    -- end
 end
 
 -- Attaque lourde du héros
@@ -340,11 +385,6 @@ function Character:heavyAttack(target, ShowDamageDealtAnimation)
     if not target.isDead and target.currentEnergy <= target.energyUsedByTakingAtk and not target.isStunned then
         self:stun(target)
     end
-
-    -- if target.currentHealth <= 0 then
-    --     target.isDead = true
-    --     self:getReward(target)
-    -- end
 end
 
 -- Attaque riposte du héros
@@ -361,12 +401,6 @@ function Character:fightBackAtk(target, ShowDamageDealtAnimation)
 
     self.isStunned = false
     self.canFightBack = false
-
-    -- if target.currentHealth <= 0 then
-    --     target.isDead = true
-    --     ShowTxt.trigger(target.name .. " est mort", 300, 200)
-    --     self:getReward(target)
-    -- end
 end
 
 -- Contre-attaque du héros
@@ -385,12 +419,6 @@ function Character:counterAttack(target, ShowDamageDealtAnimation)
 
     self.isStunned = false
     self.canCounterAtk = false
-
-    -- if target.currentHealth <= 0 then
-    --     target.isDead = true
-    --     ShowTxt.trigger(target.name .. " est mort", 300, 200)
-    --     self:getReward(target)
-    -- end
 end
 
 -- Gestion de l'attaque pour le monstre
@@ -439,11 +467,6 @@ function Character:performMonsterAttack(target, dt, ShowDamageDealtAnimation)
                     self:resetMonsterAttack()
                 end
         
-                -- if target.currentHealth <= 0 then
-                --     target.isDead = true
-                --     ShowTxt.trigger(target.name .. " est mort", 300, 200)
-                -- end
-        
                 self:resetMonsterAttack()
 
                 return 
@@ -465,7 +488,7 @@ function Character:parry(target, dt)
         return
     end
 
-    if love.keyboard.isDown("left") then
+    if Control.keys.left then
         if target.isAboutToAtk and target.monsterAttackTimer <= 1 then
             if not self.hasParried then
                 self.hasParried = true
@@ -499,6 +522,11 @@ function Character:getReward(monster)
         end
         
     end
+
+    self.inventory:addItem(Potion.healthPotion)
+    self.inventory:addItem(Potion.manaPotion)
+    self.inventory:addItem(Tools.bomb)
+    self.inventory:addItem(Tools.whetstone)
 end
 
 function Character:updateReward(dt)
@@ -556,34 +584,33 @@ function Character:updateEnergyBar(dt)
     end
 end
 
-function Character:checkIfHeavyAtkIsAvailable(dt)
-    if self.canFightBack and self.canAtk then
-        if not self.canPerformHeavyAtk then
-            self.canPerformHeavyAtk = true
-            ShowTxt.trigger("Vous pouvez frapper fort ", 200, 200)
-            self.heavyAtkTimer = 0  -- Réinitialiser le timer quand l'opportunité commence
-        end
+-- function Character:checkIfHeavyAtkIsAvailable(dt)
+--     if self.canFightBack and self.canAtk then
+--         if not self.canPerformHeavyAtk then
+--             self.canPerformHeavyAtk = true
+--             ShowTxt.trigger("Vous pouvez frapper fort ", 200, 200)
+--             self.heavyAtkTimer = 0  -- Réinitialiser le timer quand l'opportunité commence
+--         end
         
-        self.heavyAtkTimer = self.heavyAtkTimer + dt
+--         self.heavyAtkTimer = self.heavyAtkTimer + dt
         
-        if self.heavyAtkTimer >= 1 then
-            self.canPerformHeavyAtk = false
-            self.heavyAtkTimer = 0
-            ShowTxt.trigger("Vous avez raté l'occasion de frapper fort ", 200, 200)
-        end
-    else
-        -- Si les conditions ne sont plus remplies, désactiver l'attaque lourde
-        self.canPerformHeavyAtk = false
-    end
-end
+--         if self.heavyAtkTimer >= 1 then
+--             self.canPerformHeavyAtk = false
+--             self.heavyAtkTimer = 0
+--             ShowTxt.trigger("Vous avez raté l'occasion de frapper fort ", 200, 200)
+--         end
+--     else
+--         -- Si les conditions ne sont plus remplies, désactiver l'attaque lourde
+--         self.canPerformHeavyAtk = false
+--     end
+-- end
 
 ---- // ---- CHARCATER UPDATE FUNCTION GLOBAL CALL ---- // ---- 
 
 function Character:update(target, dt, ShowDamageDealtAnimation)
     self:updateReward(dt)
     self:updateStunState(target, dt)
-
-    
+    self:updateKnockBackTimer(dt)
 
     if not self.isDead then
         self:updateAttackCooldown(dt)
@@ -594,11 +621,15 @@ function Character:update(target, dt, ShowDamageDealtAnimation)
 
         -- hero
         if not self.isMonster then
-            if love.keyboard.isDown("right") then
+            if Control.keys.right then
                 self:performAtk(target, dt, ShowDamageDealtAnimation)
             end
             
-            self:checkIfHeavyAtkIsAvailable(dt)
+            if self.inventory then
+                self.inventory:handleInput(self, target)
+            end
+
+            -- self:checkIfHeavyAtkIsAvailable(dt)
             self:parry(target, dt)
         end
 
@@ -627,17 +658,5 @@ end
 function Character:draw(posX)
     self:drawStatut(posX)
 end
-
--- function Character:useInventoryItem(itemIndex)
---     if self.inventory then
---         local result = self.inventory:useItem(itemIndex, self)
---         if result then
---             -- Feedback visuel ou sonore
---             ShowTxt.trigger("Objet utilisé!", 300, 100)
---         else
---             ShowTxt.trigger("Impossible d'utiliser cet objet", 300, 100)
---         end
---     end
--- end
 
 return Character
