@@ -4,7 +4,7 @@ local Push = require("lib.push")
 
 ---- // ---- MODULES ---- // ---- 
 
-local Controls = require("modules.controls.Controls")
+local Control = require("modules.control.Control")
 local ShowDamageDealtAnimation = require("modules.interface.ShowDamageDealtAnimation")
 local Hero = require("modules.character.Hero")
 local Monster = require("modules.character.Monster")
@@ -16,6 +16,7 @@ local Particle = require("modules.interface.Particle")
 local ShowTxt = require("modules.interface.ShowTxt")
 local Inventory = require("modules.expedition.Inventory")
 local Potion = require("modules.expedition.inc.Potion")
+local Tools = require("modules.expedition.inc.Tools")
 
 ---- // ---- SCREEN PARAMETERS ---- // ---- 
 
@@ -41,7 +42,7 @@ function love.load()
     Push:setupScreen(virtualWidth, virtualHeight, windowWidth, windowHeight, {fullscreen = true, vsync = true, resizable = true, pixelperfect = true})
 
     -- load every resources and modules
-    Controls.loadFunction()
+    Control.load()
     resources = Resources:new()
     spriteManager = SpriteManager:new(resources)
 
@@ -191,12 +192,13 @@ function love.draw()
     -- interface
     -- Grid.draw()
     spriteManager:drawAnimation("coinAnimation", 0, 0)
-    Potion.drawHealthPotion()
+    Potion.draw()
+    Tools.draw()
     inventory:draw()
     
     -- hero
     hero:draw(64)
-    hero:drawSpec()
+    -- hero:drawSpec()
 
     -- monster
     monster:draw(512)

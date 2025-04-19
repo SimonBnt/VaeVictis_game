@@ -16,9 +16,20 @@ function Resources:new()
 
         -- consumable
 
+        -- tools
+
+        -- offensive 
+
+        bomb = "assets/img/sprite/item/consumable/tools/offensive/bomb.png",
+        
+        -- support
+
+        whetstone = "assets/img/sprite/item/consumable/tools/support/whetstone.png",
+
         -- potion
 
         healthPotion = "assets/img/sprite/item/consumable/potion/healthPotion.png",
+        manaPotion = "assets/img/sprite/item/consumable/potion/manaPotion.png",
 
         -- monster class
         -- F class
