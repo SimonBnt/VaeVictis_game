@@ -2,6 +2,7 @@ local Potion = require("modules.expedition.inc.Potion")
 local Tools = require("modules.expedition.inc.Tools")
 local Control = require("modules.control.Control")
 local ShowTxt = require("modules.interface.ShowTxt")
+local Particle = require("modules.interface.Particle")
 
 local Inventory = {}
 Inventory.__index = Inventory
@@ -94,17 +95,24 @@ function Inventory:useItem(key, hero, target)
     if entry and entry.count > 0 and entry.data.isUsable then
         entry.count = entry.count - 1
 
+    -- (type, countMin, countMax, vXMin, vXMax, vYMin, vYMax, lifeTimeMin, lifeTimeMax, sizeMin, sizeMax, posX, posY, gravity, fade, color, direction)
+
+
         -- Apply effect if set
         if entry.data.effect then
             if entry.data.name == "Bomb" then
                 -- Utiliser currentHealth au lieu de hp
                 target.currentHealth = math.max(0, target.currentHealth - entry.data.effect)
+                Particle:create("circle", 100, 200, -50, 50, -30, 20, 0.2, 1, 1, 4, target.posX, target.posY, 40, true, {1,0.6,0.2}) 
             elseif entry.data.name == "Health potion" then
                 hero.currentHealth = math.min(hero.maxHealth, hero.currentHealth + entry.data.effect)
+                Particle:create("circle", 50, 100, -20, 20, 0, 40, 0.5, 1.5, 1, 3, hero.posX, hero.posY + 32, 20, true, {0,1,0.2}, "up") 
             elseif entry.data.name == "Mana potion" then
                 hero.currentMana = math.min(hero.maxMana, hero.currentMana + entry.data.effect)
+                Particle:create("circle", 50, 100, -20, 20, 0, 40, 0.5, 1.5, 1, 3, hero.posX, hero.posY + 32, 20, true, {0,0.2,1}, "up") 
             elseif entry.data.name == "Whetstone" then
-                hero.atk = hero.atk + entry.data.effect
+                hero.atk = hero.atk * entry.data.effect
+                Particle:create("circle", 10, 50, -20, 20, -30, -10, 0.5, 1.5, 1, 3, hero.posX, hero.posY, 40, true, {1,1,1}) 
             end
         end
 

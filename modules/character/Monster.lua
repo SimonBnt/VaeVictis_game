@@ -16,17 +16,17 @@ setmetatable(Monster, Character)
 function Monster:new()
     local selectedMonster = MonsterList.F[1] -- par défaut le premier monstre
 
-    local throw = math.random(1, 5)
+    local throw = math.random(1, 6)
 
     if throw == 1 then
         selectedMonster = MonsterList.F[1]
     elseif throw == 2 then
         selectedMonster = MonsterList.D[1]
-    elseif throw == 4 then
+    elseif throw == 3 then
         selectedMonster = MonsterList.D[5]
-    elseif throw == 5 then
+    elseif throw == 4 then
         selectedMonster = MonsterList.D[6]
-    elseif throw == 6 then
+    elseif throw == 5 then
         selectedMonster = MonsterList.C[5]
     end
 

@@ -8,8 +8,8 @@ resources = Resources:new()
 spriteManager = SpriteManager:new(resources)
 
 local Tools = {
-    bomb = Item:new("Bomb", "Deals heavy explosive damage.", 2, true, 50, true, 64, 320),
-    whetstone = Item:new("Whetstone", "Sharpen your weapon.", 1, true, 20, true, 96, 320),
+    bomb = Item:new("Bomb", "Deals heavy explosive damage.", 2, true, 40, true, 64, 320),
+    whetstone = Item:new("Whetstone", "Sharpen your weapon.", 1, true, 1.25, true, 96, 320),
 }
 
 function Tools.draw()

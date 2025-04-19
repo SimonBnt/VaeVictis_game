@@ -210,8 +210,7 @@ function Character:takeDamage(atk, def)
         self.currentHealth = math.max(0, self.currentHealth - damage)
     end
 
-    Particle:create("circle", 10, 100, -50, 50, -80, -20, 0.5, 1.5, 1, 4, self.posX, self.posY, 100, true, {1,0,0})
-
+    Particle:create("circle", 5, 20, -50, 50, -50, 20, 0.5, 1.5, 1, 4, self.posX, self.posY, 100, true, {1,0,0})
     return damage
 end
 
