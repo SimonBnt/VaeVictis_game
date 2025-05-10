@@ -1,6 +1,5 @@
-💀 VaeVictis -- Dark fantasy Pixel art action roguelike rpg 💀
-
-<hr style="border: none; border-top: 0.5px solid #ccc;">
+<h1 style="padding-bottom : 1rem">💀 VaeVictis 💀</h1>
+<h2 style="border-bottom: solid 1px">Dark fantasy Pixel art action roguelike rpg</h2>
 
 VaeVictis is a project that’s been close to my heart for quite some time now. All the ideas and inspirations I’ve collected in my head are finally starting to take shape ever since I began developing the game using Lua and LÖVE2D.
 
@@ -18,11 +17,9 @@ Don’t forget to wishlist and follow the project . It really helps spread the w
 
 A demo will also be available soon on Steam. Feel free to download it, give it a try, die a few times, and share your thoughts on the game!
 
-<hr style="border: none; border-top: 1px solid #ccc;">
+<hr style="border: none; border-top: 0.25rem solid #ccc;">
 
 📖 A little bit of scenario 📖
-
-<hr style="border: none; border-top: 0.5px solid #ccc;">
 
 "You play as a wandering monster hunter, a lone mercenary roaming a world ravaged by the 'Miasma.' Every expedition is a fight for survival: track down nightmarish creatures, harvest their precious resources, and sell them to upgrade your gear and hone your combat skills.
 
