@@ -523,10 +523,10 @@ function Character:getReward(monster)
         
     end
 
-    self.inventory:addItem(Potion.healthPotion)
-    self.inventory:addItem(Potion.manaPotion)
-    self.inventory:addItem(Tools.bomb)
-    self.inventory:addItem(Tools.whetstone)
+    -- self.inventory:addItem(Potion.healthPotion)
+    -- self.inventory:addItem(Potion.manaPotion)
+    -- self.inventory:addItem(Tools.bomb)
+    -- self.inventory:addItem(Tools.whetstone)
 end
 
 function Character:updateReward(dt)

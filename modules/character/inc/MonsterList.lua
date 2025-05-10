@@ -1,3 +1,5 @@
+local Item = require("modules.expedition.Item")
+
 local MonsterList = {
 
     -- F class monster
@@ -27,7 +29,12 @@ local MonsterList = {
             class = "f",
 
             loot = {
-                
+                ratTooth = Item:new({
+                    n = "Rat tooth",
+                    d = "A damaged rat tooth of no great value",
+                    w = 0.1,
+                    isOTS = true
+                })
             },
 
             spriteKey = "giantRat"

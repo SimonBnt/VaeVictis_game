@@ -1,13 +1,41 @@
 local Item = require("modules.expedition.Item")
 
 local manaShardsByClass = {
-    f = Item:new("Mana Residue", "Faint traces of magical energy. Almost useless, but still glows faintly.", 0.1, false),
-    e = Item:new("Raw Mana Shard", "A coarse fragment imbued with raw magic.", 0.2, false),
-    d = Item:new("Polished Mana Shard", "A well-shaped shard that resonates weakly with mana.", 0.3, false),
-    c = Item:new("Mana Shard", "A standard fragment of refined mana. Useful for crafting.", 0.4, false),
-    b = Item:new("Greater Mana Shard", "A strong shard pulsating with magical power.", 0.6, false),
-    a = Item:new("Overflowing Mana Shard", "So much magic leaks from it, the air trembles nearby.", 0.8, false),
-    s = Item:new("Pure Mana", "A crystallized essence of pure, untainted mana. Extremely rare.", 1, false)
+    f = Item:new({
+        n = "Mana Residue", 
+        d = "Faint traces of magical energy. Almost useless, but still glows faintly.", 
+        w = 0.1, 
+    }),
+    e = Item:new({
+        n = "Raw Mana Shard", 
+        d = "A coarse fragment imbued with raw magic.", 
+        w = 0.2, 
+    }),
+    d = Item:new({
+        n = "Polished Mana Shard", 
+        d = "A well-shaped shard that resonates weakly with mana.", 
+        w = 0.3, 
+    }),
+    c = Item:new({
+        n = "Mana Shard", 
+        d = "A standard fragment of refined mana. Useful for crafting.", 
+        w = 0.4, 
+    }),
+    b = Item:new({
+        n = "Greater Mana Shard", 
+        d = "A strong shard pulsating with magical power.", 
+        w = 0.6, 
+    }),
+    a = Item:new({
+        n = "Overflowing Mana Shard", 
+        d = "So much magic leaks from it, the air trembles nearby.", 
+        w = 0.8, 
+    }),
+    s = Item:new({
+        n = "Pure Mana", 
+        d = "A crystallized essence of pure, untainted mana. Extremely rare.", 
+        w = 1, 
+    }),
 }
 
 return manaShardsByClass
