@@ -5,7 +5,7 @@ VaeVictis is a project that’s been close to my heart for quite some time now. 
 
 If I had to categorize VaeVictis, I’d say it’s an action roguelike RPG set in a dark fantasy universe inspired by Berserk, Bloodborne, and Dark Souls, brought to life in pixel art.
 
-For the game’s design, I draw inspiration from titles like Vampire Survivors, Risk of Rain, Bloodborne, Slay the Spire, Noita, and many others. I borrow small bits of gameplay and ideas that personally struck me, elements that might seem minor, but give that addictive “just one more run” feeling and make the gameplay truly fun.
+For the game’s design and gameplay, I draw inspiration from titles like Vampire Survivors, Risk of Rain, Bloodborne, Slay the Spire, Noita, and many others. I borrow small bits of gameplay and ideas that personally struck me, elements that might seem minor, but give that addictive “just one more run” feeling and make the gameplay truly fun.
 
 One of my goals with VaeVictis is to create near-infinite replayability, allowing you to embark on ever more challenging and varied monster-hunting expeditions. While balancing a game is always a difficult task, I aim to make it as hardcore as possible. Your hero will grow stronger throughout each expedition—but the game will never go easy on you. The idea is that you get better, not that the game gets easier.
 
@@ -15,7 +15,7 @@ If you want to know more about VaeVictis and follow future updates, check out th
 
 Don’t forget to wishlist and follow the project . It really helps spread the word and gives me valuable feedback to keep improving the game, and to craft an experience that’s always more fun, challenging, and rewarding.
 
-A demo will also be available soon on Steam. Feel free to download it, give it a try, die a few times, and share your thoughts on the game!
+A demo will also be available soon on Steam, Itch.io and Epic Store. Feel free to download it, give it a try, die a few times, and share your thoughts on the game!
 
 <h2 style="border-bottom: solid 1px">📖 A little bit of scenario 📖</h2>
 
@@ -23,20 +23,23 @@ A demo will also be available soon on Steam. Feel free to download it, give it a
 
 But this cycle of hunting and trading comes at a cost. The farther you venture, the deadlier the monsters become. The world itself is a relentless enemy—the Miasma corrupts everything it touches, turning life into savage abominations eager to tear you apart.
 
-Traverse these tainted lands with your sword, your shield, and your 'Mana Lamp,' powered by rare crystals that allow you to survive in the Miasma. But for how long? Remember to recharge it… or your fate is sealed. Or worse.
+Traverse these tainted lands with your sword, your shield, and your 'Mana Lantern,' powered by rare crystals that allow you to survive in the Miasma. But for how long? Remember to recharge it… or your fate is sealed. Or worse.
 
 Kill, trade, survive… until death finally catches up to you."
 
 <h2 style="border-bottom: solid 1px">🦸‍♂️ The Hero… well, “Victis” — but you're the one in control, you get the idea. 🦸‍♂️</h2>
 
 Not much is known about Victis, other than that he makes a living as a wandering monster hunter. 
+
 Like any respectable human, of course, he has HP, mana, and an XP bar — naturally.
 
 He carries a more or less infinite bag where he carefully organizes everything he finds, like a master of Tetris. But be warned: while space isn’t a problem, weight is. Physics is a thing, you know.
 
 Strangely, despite this rigor, he can't help but hang the trinkets he finds on his bag, it's not very aesthetic...
 
-Oh, and I almost forgot: Victis is a registered member of the famous Hunter’s Guild — you’ve probably heard of it. Every hunter is ranked from E to S (reminds me of something…). The better you are, the higher you climb. What’s the point? …Honestly, I’m not entirely sure.
+Oh, and I almost forgot: Victis is a registered member of the famous Hunter’s Guild — you’ve probably heard of it. 
+
+Every hunter is ranked from E to S (reminds me of something…). The better you are, the higher you climb. What’s the point? …Honestly, I’m not entirely sure.
 
 <h2 style="border-bottom: solid 1px">👻 Bestiary 👻</h2>
 
@@ -46,7 +49,7 @@ All monsters are categorized by “Monster Rank” from E to S — with S being 
 
 Each monster has its preferred habitat and active time: some love sunny days, others lurk in dark forests at night, while some crawl through rainy swamps. It’s up to you to track them down, defeat them, and harvest their precious materials.
 
-Every monster drops mana fragments (with value depending on their rank), along with various components you can either sell or use to upgrade your equipment. Sometimes they’ll also drop useful items like potions or whetstones for sharpening your weapon.
+Every monster drops mana fragments (with value depending on their rank, use it to reload your lantern), along with various components you can either sell or use to upgrade your equipment. Sometimes they’ll also drop useful items like potions or whetstones for sharpening your weapon.
 
 If you’re lucky, you might even find a chest on a defeated monster… but beware of mimics!
 
