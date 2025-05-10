@@ -1,4 +1,5 @@
-<h1 style="padding-bottom : 1rem">💀 VaeVictis 💀</h1>
+<h1 style="padding-bottom : 1rem, border : none">💀 VaeVictis 💀</h1>
+<hr>
 <h2 style="border-bottom: solid 1px">Dark fantasy Pixel art action roguelike rpg</h2>
 
 VaeVictis is a project that’s been close to my heart for quite some time now. All the ideas and inspirations I’ve collected in my head are finally starting to take shape ever since I began developing the game using Lua and LÖVE2D.
