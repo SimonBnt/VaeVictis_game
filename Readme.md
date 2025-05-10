@@ -26,3 +26,11 @@ But this cycle of hunting and trading comes at a cost. The farther you venture, 
 Traverse these tainted lands with your sword, your shield, and your 'Mana Lamp,' powered by rare crystals that allow you to survive in the Miasma. But for how long? Remember to recharge it… or your fate is sealed. Or worse.
 
 Kill, trade, survive… until death finally catches up to you."
+
+<hr style="border: none; border-top: 1px solid #ccc;">
+
+test html in mk
+
+---
+
+test 3 traits
