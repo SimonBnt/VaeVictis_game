@@ -55,6 +55,8 @@ If you’re lucky, you might even find a chest on a defeated monster… but bewa
 
 <h2 style="border-bottom: solid 1px">⚔️ Fight system ⚔️</h2>
 
+Real-time combat where you can attack, parry, riposte, use items, and cast spells.
+
 <h3>🐱‍👤 Technique Set</h3>
 
 You’ll have a “technique set” system: you start with an attack combo of 3 moves, each with its own properties, execution timing, and button combination.
