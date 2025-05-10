@@ -1,7 +1,7 @@
 <h1 style="border : none">💀 VaeVictis 💀</h1>
 <h2 style="border-bottom: solid 1px">🗡Dark fantasy Pixel art action roguelike rpg</h2>
 
-<span style="font-weight: bold">VaeVictis</span> is a project that’s been close to my heart for quite some time now. All the ideas and inspirations I’ve collected in my head are finally starting to take shape ever since I began developing the game using Lua and LÖVE2D.
+VaeVictis is a project that’s been close to my heart for quite some time now. All the ideas and inspirations I’ve collected in my head are finally starting to take shape ever since I began developing the game using Lua and LÖVE2D.
 
 If I had to categorize VaeVictis, I’d say it’s an action roguelike RPG set in a dark fantasy universe inspired by Berserk, Bloodborne, and Dark Souls, brought to life in pixel art.
 
@@ -74,16 +74,16 @@ You can use various consumable items to aid you on your expeditions and in battl
 
 <h3>🛡 Parry & Riposte</h3>
 
-Remember: you’re human. It only takes a few hits from an <span style="font-weight: bold">Ogre</span> to end you. Time your parries carefully to avoid a quick death.
+Remember: you’re human. It only takes a few hits from an Ogre to end you. Time your parries carefully to avoid a quick death.
 If you successfully parry, you’ll be able to riposte with an attack — and if you follow it up with the right technique at the right moment, you can instantly chain into a combo without waiting for your hero to be “ready to attack.”
 
 I’ll let you discover the rest on your own.
 
-<h3 style="border-bottom: solid 1px">🎯 Objectives, Quests & Bounties 🎯</h3>
+<h2 style="border-bottom: solid 1px">🎯 Objectives, Quests & Bounties 🎯</h2>
 
 <h3>🎯 Objective: </h3>
 
-<p style="font-weight: bold">Survive your expedition.</p>
+Survive your expedition.
 Why be a monster hunter when your life hangs by a thread, even against the “weakest” enemies? Simple — it’s a job like any other. Besides, it’s what you’re best at.
 Just… try not to get crushed, shredded, devoured, burned, drained, dismembered, or dissolved. You’ll be fine.
 
