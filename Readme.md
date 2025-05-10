@@ -1,8 +1,7 @@
-<h1 style="padding-bottom : 1rem, border : none">💀 VaeVictis 💀</h1>
-<hr>
-<h2 style="border-bottom: solid 1px">Dark fantasy Pixel art action roguelike rpg</h2>
+<h1 style="border : none">💀 VaeVictis 💀</h1>
+<h2 style="border-bottom: solid 1px">🗡Dark fantasy Pixel art action roguelike rpg</h2>
 
-VaeVictis is a project that’s been close to my heart for quite some time now. All the ideas and inspirations I’ve collected in my head are finally starting to take shape ever since I began developing the game using Lua and LÖVE2D.
+<span style="font-weight: bold">VaeVictis</span> is a project that’s been close to my heart for quite some time now. All the ideas and inspirations I’ve collected in my head are finally starting to take shape ever since I began developing the game using Lua and LÖVE2D.
 
 If I had to categorize VaeVictis, I’d say it’s an action roguelike RPG set in a dark fantasy universe inspired by Berserk, Bloodborne, and Dark Souls, brought to life in pixel art.
 
@@ -18,9 +17,7 @@ Don’t forget to wishlist and follow the project . It really helps spread the w
 
 A demo will also be available soon on Steam. Feel free to download it, give it a try, die a few times, and share your thoughts on the game!
 
-<hr style="border: none; border-top: 0.25rem solid #ccc;">
-
-📖 A little bit of scenario 📖
+<h2 style="border-bottom: solid 1px">📖 A little bit of scenario 📖</h2>
 
 "You play as a wandering monster hunter, a lone mercenary roaming a world ravaged by the 'Miasma.' Every expedition is a fight for survival: track down nightmarish creatures, harvest their precious resources, and sell them to upgrade your gear and hone your combat skills.
 
@@ -30,131 +27,102 @@ Traverse these tainted lands with your sword, your shield, and your 'Mana Lamp,'
 
 Kill, trade, survive… until death finally catches up to you."
 
-<hr style="border: none; border-top: 1px solid #ccc;">
+<h2 style="border-bottom: solid 1px">🦸‍♂️ The Hero… well, “Victis” — but you're the one in control, you get the idea. 🦸‍♂️</h2>
 
-🦸‍♂️ Le Héro, enfin "Victis", mais c'est vous qui le controler, bref vous m'avez compris... 🦸‍♂️
+Not much is known about Victis, other than that he makes a living as a wandering monster hunter. 
+Like any respectable human, of course, he has HP, mana, and an XP bar — naturally.
 
-<hr style="border: none; border-top: 0.5px solid #ccc;">
+He carries a more or less infinite bag where he carefully organizes everything he finds, like a master of Tetris. But be warned: while space isn’t a problem, weight is. Physics is a thing, you know.
 
-On ne sait pas grand chose sur "Victis" mise à part qu'il gagne sa vie en travaillant comme chasseur de monstre itinérant. Mais comme tout humain qui se respecte il a évidement des pv, du mana et une barre d'xp, cela va de sois.
+Strangely, despite this rigor, he can't help but hang the trinkets he finds on his bag, it's not very aesthetic...
 
-Il porte un sac plus ou moins infini ou il pourra ranger avec précotion et rigueur tous les objets qu'il trouvera, tel un joueur de Tetris. Faites seulement attention au poids de votre inventaire, la place ce n'est pas un probleme mais le poids s'en est un, la physique ca existe vous savez.
+Oh, and I almost forgot: Victis is a registered member of the famous Hunter’s Guild — you’ve probably heard of it. Every hunter is ranked from E to S (reminds me of something…). The better you are, the higher you climb. What’s the point? …Honestly, I’m not entirely sure.
 
-Ah oui joubliais, Victis est enregistré dans la "guilde des chasseur", la fameuse, vous en avez deja surement entendu parlé. 
-Chaque chasseur dispose d'un rang allant du E à S, ca me rappel quelque chose...
-Bref en tout cas plus vous etes doué et plus vous grimperez dans les rangs. 
-A quoi ca sert ? J'en sais trop rien.
+<h2 style="border-bottom: solid 1px">👻 Bestiary 👻</h2>
 
-👻 Bestiary 👻
+At the moment, I’m planning 73 different monster types. You’ll find classic RPG enemies like rats, slimes, bats, skeletons, orcs, and many more — but also some more unusual creatures like mutant toads, giant snails, and eerie swamp creatures.
 
-<hr style="border: none; border-top: 0.5px solid #ccc;">
+All monsters are categorized by “Monster Rank” from E to S — with S being the rarest, most dangerous and fearsome, and E the most common and least threatening.
 
-Pour l'instant je prévois 73 types de monstre dans lesquels vous pourrez retrouver des classics de rpg comme des rat, slime, chauve souris, squelette, orc et bien d'autres mais aussi certains un peu moins courant, comme des crapauds et des escargots mutants, ou encore des "créatures des marais"...
+Each monster has its preferred habitat and active time: some love sunny days, others lurk in dark forests at night, while some crawl through rainy swamps. It’s up to you to track them down, defeat them, and harvest their precious materials.
 
-Tous sont classés par "classe de monstre", du rang S au rang E, S etant les plus rares, dangereux et redoutables et E les plus communs et les moins coriaces.
+Every monster drops mana fragments (with value depending on their rank), along with various components you can either sell or use to upgrade your equipment. Sometimes they’ll also drop useful items like potions or whetstones for sharpening your weapon.
 
-Chacun ont leur habitat de préférence et leurs heures d'apparitions, certains préfere les jours ensoleilé, d'autres les forets de nuit, certtains preferes ramper dans les marécages par temps de pluies. A vous de les traquer pour les vaincres et récuperer leur précieux composants.
+If you’re lucky, you might even find a chest on a defeated monster… but beware of mimics!
 
-Tous looteront des fragments de mana de plus ou moins grandes valeur suivant leur classe mais aussi des des composants en tous genre qui serviront de marchandise a vendre ou de composant pour améliorer vos équipements. Ils vous fourniront aussi dans certains cas des objest utiles comme des potions ou de quoi aiguiser votre arme.
+<h2 style="border-bottom: solid 1px">⚔️ Fight system ⚔️</h2>
 
-Si vous etes chanceux vous trouverez un coffre sur certains d'entre eux, mais attention aux mimics !
+<h3>🐱‍👤 Technique Set</h3>
 
-<hr style="border: none; border-top: 1px solid #ccc;">
+You’ll have a “technique set” system: you start with an attack combo of 3 moves, each with its own properties, execution timing, and button combination.
 
-⚔️ Fight system ⚔️
+Here’s how it works:
+When your hero is ready to attack, hold down the “attack prep” button, then input the correct key combinations for your different techniques. Press them in rhythm, and you’ll chain attacks together — up to 7 consecutive moves, with the 7th being devastating.
 
-<hr style="border: none; border-top: 0.5px solid #ccc;">
+You can unlock up to 7 techniques for your set during your expedition. You’ll be able to edit your set at campfires or resting spots — crucial, since some techniques have synergies. 
+For example, if your 4th move is “Finishing Blow”, and your target is already bleeding from a previous “Piercing Thrust”, the damage will be multiplied and the bleeding intensified.
 
--"Set de techniques" 🐱‍👤
+That’s just one synergy among many… I’ll let you discover the rest for yourself!
 
-<hr style="border: none; border-top: 0.5px solid #ccc;">
+<h3>🧙🏻‍♂️ Spells</h3>
 
-System de "set de techniques" : vous commencez avec set d'attaque composé d'un "combo" de 3 coups, chacuns ont leur spécificités, leur timing pour executer l'attaque parfaitement mais surtout leur combinaison de touche pour les réaliser.
+You’ll also have access to elemental spells to enhance your combat options, plus support, shield, and healing spells.
 
-Autrement dit : lorsque que votre héro est pret à attaquer, maintenant la touche de "préparation d'attaque", enchainez ensuite les combinaision de touches correspondantes aux différentes techniques, appuyez avec le bon rythme et vous enchainerez les attaques jusqu'à un maximum de 7 à la suite, la 7eme etant dévastatrice.
+<h3>🛠 Items</h3>
 
-Votre "set de technique" peut atteindre un maximum de 7 attaques différentes que vous apprendrez durant votre expedition. 
-Votre set est modifiable durant les phases de repos. Ce qui peut avoir son importance en sachant que certaines techniques ont des synergies avec d'autres, par exemple si votre 4eme attaque est "Coup de grâce", et que votre ennemie est en train de "saigner" grace à l'attaque "estoc", alors les degats seront décuplé et le saignement intensifié. Ceci n'est qu'une sinergie parmis temps d'autres que je vous laisserais découvir par vous meme.
+You can use various consumable items to aid you on your expeditions and in battle.
 
--Sort 🧙🏻‍♂️
+<h3>🛡 Parry & Riposte</h3>
 
-<hr style="border: none; border-top: 0.5px solid #ccc;">
+Remember: you’re human. It only takes a few hits from an <span style="font-weight: bold">Ogre</span> to end you. Time your parries carefully to avoid a quick death.
+If you successfully parry, you’ll be able to riposte with an attack — and if you follow it up with the right technique at the right moment, you can instantly chain into a combo without waiting for your hero to be “ready to attack.”
 
-Des sorts de types élementaires seront aussi disponible pour completer votre arsenal de combat mais aussi des sorts de soutien, bouclier et soins par exemple.
+I’ll let you discover the rest on your own.
 
--Objets 🛠
-<hr style="border: none; border-top: 0.5px solid #ccc;">
+<h3 style="border-bottom: solid 1px">🎯 Objectives, Quests & Bounties 🎯</h3>
 
-Vous pourrez aussi utiliser toute une varitée d'objets "utilisable" pour vous aider dans vos expeditions et durant les combats.
+<h3>🎯 Objective: </h3>
 
--Parade et riposte 🛡
+<p style="font-weight: bold">Survive your expedition.</p>
+Why be a monster hunter when your life hangs by a thread, even against the “weakest” enemies? Simple — it’s a job like any other. Besides, it’s what you’re best at.
+Just… try not to get crushed, shredded, devoured, burned, drained, dismembered, or dissolved. You’ll be fine.
 
-<hr style="border: none; border-top: 0.5px solid #ccc;">
+<h3>📰 Quests:</h3>
 
-Sachez seulement que vous etes humain et qu'il suffira de quelques attaques d'un Ogre pour vous tuer, faite donc bien attention de parer les attaques au bon moment pour vous éviter une mort certaine. Si vous réussissez votre parade, vous pourrez alors riposter avec une attaque, qui si elle est suivis de la bonne techqiues et dans le bon timing, qui permettra d'enchainer avec un combo sans a avoir a attendre que votre héro soit "pret a attaquer".
+During your expedition, you might stumble across a village where you can rest, sell loot, upgrade your gear, and check the quest board for extra rewards on your next visit (assuming you don’t end up inside a giant snail by then).
 
-<hr style="border: none; border-top: 0.5px solid #ccc;">
+Here are some example quests:
 
-Pour le reste, je vous laisse le soin de découvrir.
+    The housing market is collapsing!
+    “Heavens! All the clients keep vanishing before signing their lease…”
+    → Kill 3 goblins
 
-<hr style="border: none; border-top: 1px solid #ccc;">
+    Wolf fang necklaces in resin are cool…
+    “…but real ones are even better!”
+    → Bring 3 wolf fangs
 
-🎯 Objetive, quest and bounty 🎯
+    The local druid’s a bit… off.
+    “Ever since he moved in, the village mortality rate has skyrocketed. Something’s definitely wrong…”
+    → Bring 2 minor healing potions
 
-<hr style="border: none; border-top: 0.5px solid #ccc;">
+<h3>💰 Bounties:</h3>
 
--Objectiv 🎯: 
+Each village offers at least one hunting contract.
+Can you blame the villagers? It’s tough getting disemboweled every time you forage for mushrooms…
 
-<hr style="border: none; border-top: 0.5px solid #ccc;">
+Each bounty target is a unique monster only available through contracts.
+Catch ‘em all! …Wait, no, wrong game.
 
-Survivre à votre expedition. Pourquoi etre "chasseur de monstre" alors que votre vie ne tient qu'a un fil meme face au plus "inofensif" des monstres ? 
-C'est simple, c'est un metier comme un autre. 
-Et puis c'est celui dans lequel vous etes le plus doué. 
-Il suffit de ne pas mourrir écraser, déchiqueter, dévorer, carbonisé, vidé de son sang, démembrer ou encore dissous et tous se passera bien.
+The higher your hunter rank, the deadlier the contracts — and the greater the rewards.
 
-<hr style="border: none; border-top: 0.5px solid #ccc;">
+<h2 style="border-bottom: solid 1px">⏳ VaeVictis is currently in development!  ⏳</h2>
 
--Quete 📰: 
 
-<hr style="border: none; border-top: 0.5px solid #ccc;">
+I’ll be sharing updates on social media, the official website, Steam page, Itch.io, Epic Games Store, devlogs, and more.
 
-Durant vos expeditions, vous aurez peut etre la chance d'arriver jusqu'a un village dans lequel vous pourrez vous reposer, vendre, améliorer votre équipement mais surtout consulter le tableau de quetes qui vous permettra d'obtenir des récompenses en plus lors de votre prochain passage en ville, enfin si vous ne finissez pas dans le vendre d'un escargot goliath en chemin, cela va de soi.
+Stay tuned and keep an eye out for news!
 
-Exemple de quete : 
-    - "Le marché de l'immobilier s'effondre"
-        Les clients meurent tous avant de signer le bail. 
-            Tuer 3 gobelins
-    - "Les colliers avec des dents de loups en résines c'est cool" 
-        Mais les vrais c'est encore mieux !
-            Apporter 3 crocs de loups
-    - "Le druide du coin n'est pas très doué". 
-        Depuis qu'il s'est installé dans le village, le taux de mortallité a augmenté. Tous ceci est bien étrange...
-            Apporter deux potion de vie inférieurs
+<h2 style="border-bottom: solid 1px">✨ Thank You! ✨</h2>
 
-<hr style="border: none; border-top: 0.5px solid #ccc;">
-
--Bounty 💰: 
-
-<hr style="border: none; border-top: 0.5px solid #ccc;">
-
-Chaque village proposera au moins un contrat de chasse. 
-Comprenez les villagois, c'est dure de se faire étriper à chaque cuiellette de champignon...Mais revenons à nos moutons.
-
-Chaque cible est un monstre unique rencontrable uniquement via les contrats de chasse. 
-Attraper les tous ! Euh non ca c'est un autre jeu...
-
-Plus votre rang de chasseur sera élévé et plus les contrats seront mortelles et la récompense aussi !
-
-⏳ Vae Victis est en cours de développement ⏳
-
-<hr style="border: none; border-top: 0.5px solid #ccc;">
-
-Je vais communiquer le plus possible sur les réseaux, le site officiel, la page Steam, Itch.io, Epic, publier des dev logs etc.
-
-SOyez patients et à l'affue de nouvelles de ma part.
-
-✨ Remerciement ✨
-
-Merci de suivre le projet, whichlist et tutiquanti !
-
-J'espere que vous pourrez vite partir en expedition, et massacrer le plus de monstre possible !
+Thanks for following the project, wishlisting, and all that good stuff!
+I hope you’ll soon embark on your expedition… and slay as many monsters as possible!
