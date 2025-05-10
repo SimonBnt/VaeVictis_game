@@ -1,0 +1,101 @@
+Code Management :
+    -Refactor constructor or switch to Table-based system if no constructor used
+    -Balance character stats
+    -Implement controller input handling
+    -debug xp and money incrementation system
+
+Sprites :
+    -Ogre: arms reaching down to the feet
+
+Demo :
+    -6 monsters per zone: 3 by day, 3 by night + mimic
+    -3 zones: forest, swamp, plains (bounty: demo)
+        -Forest
+            -Day:
+                -Rat
+                -Snail
+                -Goblin
+            -Night:
+                -Bat
+                -Undead
+                -Wolf
+            -Elite/Boss:
+                -Hobgoblin
+            -Demo end boss: Ogre → triggers scripted death (one-shot kill during fight)
+        -Swamp
+            -Day:
+                -Hag
+                -Murloc
+                -Boa
+            -Night:
+                -Will-o'-wisp
+                -Skeleton
+                -Ghoul
+            -Elite/Boss:
+                -Swamp creature
+        -Plains
+            -Day:
+                -Living mushroom
+                -Grimlin
+                -Boar
+            -Night:
+                -Bottled spirit
+                -Ectoplasm
+                -Banshee
+
+Core Features :
+    -GameState management
+    -Scene system
+    -Campfire system (resting, cooking, switching attack set, changing active spell, etc.)
+    -Pre-fight event system
+    -Attack set management
+    -Town shop during expeditions + sell system
+    -Expedition skill tree
+    -Perks system (display on hero)
+    -Level-up reward system (Vampire Survivors-style?)
+    -Monsters with loot chests → chest opening & reward system (inspired by Vampire Survivors) or mimic trap
+    -General progression skill tree
+    -Monster loot system
+    -Spell system
+    -Sprites for nearly all game elements
+    -Codex system (monster, perks, attacks, spells descriptions) → small clickable manual at bottom right (keyboard/gamepad shortcut)
+    -Same system for inventory access
+    -Attack status effects (poison, fire, freeze, etc.)
+    -Attack synergy → effect triggers if X was used before T, etc.
+    -Weather system
+    -Day/night cycle + hour system based on dt
+    -Dynamic monster spawns depending on weather + time + day/night → monster pool changes (e.g., monsters X,Y,Z instead of A,B,C)
+    -Bounty system → e.g. goblin = normal, goblinCommander = rare, only spawns if bounty is active + hint system in pre-fight event depending on player choices
+
+UX/UI Animations :
+    -Animated HP/MP bars → when losing HP/MP, a colored segment spawns at the lost portion, fades over time with particle effects for feedback
+
+Additional Features :
+    -Hunting board → rewards for objectives completed during or after the run
+    -Pre-fight events offering branching paths:
+        -Example:
+            -“You’re in the forest” → 2 choices →
+                -“You hear rustling in the bushes… investigate?” → leads to Rat fight
+                -“A path to the swamp lies ahead… follow it?” → enter swamp zone → new event panel → “You arrive at the swamp” → choose →
+                    -“Ripples in the water” → Hag fight
+                    -“A corpse under a tree” → investigate → 3rd event → leads to fight, etc.
+
+Hero Event Animations :
+    -Replace hero sprite during event actions/choices:
+        -Normally walking in event phase → stops when choice is displayed
+        -Combat trigger: red exclamation above hero + combat-ready animation (draws weapon?)
+        -Loot: bends down to search
+        -Chest: bends down, opens chest → chest opening animation
+        -Mimic chest: chest transforms → mimic attack → hero surprise reaction (red exclamation + question marks)
+
+UI Elements :
+    -Sprite for a “utility item cross” in bottom left (Dark Souls-style) → configurable at campfire like attack/spell sets → assign items to X/Y
+
+Early Access:
+[To be detailed]
+
+Full Game:
+[To be detailed]
+
+DLC Ideas:
+    -Add AI-controlled pet/familiar

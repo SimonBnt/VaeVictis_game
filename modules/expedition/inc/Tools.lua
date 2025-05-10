@@ -8,13 +8,31 @@ resources = Resources:new()
 spriteManager = SpriteManager:new(resources)
 
 local Tools = {
-    bomb = Item:new("Bomb", "Deals heavy explosive damage.", 2, true, 40, true, 64, 320),
-    whetstone = Item:new("Whetstone", "Sharpen your weapon.", 1, true, 1.25, true, 96, 320),
+    bomb = Item:new({
+        n = "Bomb", 
+        d = "Deals heavy explosive damage.", 
+        w = 2, 
+        isU = true, 
+        e = 40, 
+        isD = true, 
+        pX = 64, 
+        pY = 320
+    }),
+    whetstone = Item:new({
+        name = "Whetstone", 
+        d = "Sharpen your weapon.", 
+        w = 1, 
+        isU = true, 
+        e = 1.25, 
+        isD = true, 
+        pX = 96, 
+        pY = 320
+    }),
 }
 
 function Tools.draw()
-    spriteManager:drawSpriteCentered("bomb", Tools.bomb.posX, Tools.bomb.posY, 1,1)
-    spriteManager:drawSpriteCentered("whetstone", Tools.whetstone.posX, Tools.whetstone.posY, 1,1)
+    spriteManager:drawSpriteCentered("bomb", Tools.bomb.pX, Tools.bomb.pY, 1,1)
+    spriteManager:drawSpriteCentered("whetstone", Tools.whetstone.pX, Tools.whetstone.pY, 1,1)
 end
 
 return Tools

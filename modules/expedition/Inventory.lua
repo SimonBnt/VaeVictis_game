@@ -49,14 +49,14 @@ function Inventory:getDisplayableItems()
 end
 
 function Inventory:addItem(item)
-    if not self.slot[item.name] then
-        self.slot[item.name] = {
+    if not self.slot[item.n] then
+        self.slot[item.n] = {
             data = item,
             count = 1
         }
     else
-        self.slot[item.name].count = self.slot[item.name].count + 1
-        self.currentWeight = self.currentWeight + item.weight
+        self.slot[item.n].count = self.slot[item.n].count + 1
+        self.currentWeight = self.currentWeight + item.w
     end
 end
 
@@ -68,7 +68,7 @@ function Inventory:drawItemNameInInventory()
     local i = 0
 
     for itemName, itemEntry in pairs(self.slot) do
-        love.graphics.print("- " .. itemEntry.data.name .. " x" .. itemEntry.count, x, y + i * lineHeight)
+        love.graphics.print("- " .. itemEntry.data.n .. " x" .. itemEntry.count, x, y + i * lineHeight)
         i = i + 1
     end
 end
@@ -81,9 +81,9 @@ function Inventory:drawItemCountOnInterface()
     love.graphics.setColor(1, 1, 1, 1)
 
     for _, item in ipairs(self:getDisplayableItems()) do
-        local entry = self:getItemByName(item.name)
+        local entry = self:getItemByName(item.n)
         local count = entry and entry.count or 0
-        love.graphics.print("x" .. count, item.posX, item.posY)
+        love.graphics.print("x" .. count, item.pX, item.pY)
     end
 end
 
@@ -92,26 +92,23 @@ function Inventory:useItem(key, hero, target)
     if not itemName then return end
 
     local entry = self:getItemByName(itemName)
-    if entry and entry.count > 0 and entry.data.isUsable then
+    if entry and entry.count > 0 and entry.data.isU then
         entry.count = entry.count - 1
 
-    -- (type, countMin, countMax, vXMin, vXMax, vYMin, vYMax, lifeTimeMin, lifeTimeMax, sizeMin, sizeMax, posX, posY, gravity, fade, color, direction)
-
-
         -- Apply effect if set
-        if entry.data.effect then
-            if entry.data.name == "Bomb" then
+        if entry.data.e then
+            if entry.data.n == "Bomb" then
                 -- Utiliser currentHealth au lieu de hp
-                target.currentHealth = math.max(0, target.currentHealth - entry.data.effect)
+                target.currentHealth = math.max(0, target.currentHealth - entry.data.e)
                 Particle:create("circle", 100, 200, -50, 50, -30, 20, 0.2, 1, 1, 4, target.posX, target.posY, 40, true, {1,0.6,0.2}) 
-            elseif entry.data.name == "Health potion" then
-                hero.currentHealth = math.min(hero.maxHealth, hero.currentHealth + entry.data.effect)
+            elseif entry.data.n == "Health potion" then
+                hero.currentHealth = math.min(hero.maxHealth, hero.currentHealth + entry.data.e)
                 Particle:create("circle", 50, 100, -20, 20, 0, 40, 0.5, 1.5, 1, 3, hero.posX, hero.posY + 32, 20, true, {0,1,0.2}, "up") 
-            elseif entry.data.name == "Mana potion" then
-                hero.currentMana = math.min(hero.maxMana, hero.currentMana + entry.data.effect)
+            elseif entry.data.n == "Mana potion" then
+                hero.currentMana = math.min(hero.maxMana, hero.currentMana + entry.data.e)
                 Particle:create("circle", 50, 100, -20, 20, 0, 40, 0.5, 1.5, 1, 3, hero.posX, hero.posY + 32, 20, true, {0,0.2,1}, "up") 
-            elseif entry.data.name == "Whetstone" then
-                hero.atk = hero.atk * entry.data.effect
+            elseif entry.data.n == "Whetstone" then
+                hero.atk = hero.atk * entry.data.e
                 Particle:create("circle", 10, 50, -20, 20, -30, -10, 0.5, 1.5, 1, 3, hero.posX, hero.posY, 40, true, {1,1,1}) 
             end
         end
@@ -121,7 +118,7 @@ function Inventory:useItem(key, hero, target)
             self.slot[itemName] = nil
         end
 
-        ShowTxt.trigger("Objet utilisé : " .. entry.data.name, 300, 100)
+        ShowTxt.trigger("Objet utilisé : " .. entry.data.n, 300, 100)
     else
         ShowTxt.trigger("Aucun " .. itemName .. " à utiliser", 300, 100)
     end

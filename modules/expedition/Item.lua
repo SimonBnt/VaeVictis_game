@@ -1,20 +1,35 @@
 local Item = {}
 Item.__index = Item
 
-function Item:new(name, description, weight, isUsable, effect, isDisplayable, posX, posY)
+-- p = parameters
+-- n = name
+-- d = description
+-- w = weight
+-- isU = isUsable
+-- e = effect
+-- isD = isDisplayable
+-- pX = positionX
+-- pY = positionY
+-- isOTS = isOnlyToSell
+
+-- all parameters not passed are automatically set to nil, unless default parameters are added, in which case those are those which are passed with priority
+
+function Item:new(p)
     local self = setmetatable({}, Item)
 
-    self.name = name
-    self.description = description
-    self.weight = weight
+    self.n = p.n or "Unknown"
+    self.d = p.d or ""
+    self.w = p.w or 0
 
-    self.isUsable = isUsable
-    self.effect = isUsable and effect or nil
+    self.isU = p.isU or false
+    self.e = self.isU and p.e or nil
 
-    self.isDisplayable = isDisplayable
-    self.posX = isDisplayable and posX or nil
-    self.posY = isDisplayable and posY or nil
-    
+    self.isD = p.isD or false
+    self.pX = self.isD and p.pX or nil
+    self.pY = self.isD and p.pY or nil
+
+    self.isOTS = p.isOTS or false
+
     return self
 end
 
