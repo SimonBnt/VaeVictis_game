@@ -74,7 +74,7 @@ I’ll let you discover the rest on your own.
 
 <h2 style="border-bottom: solid 1px">🗺️ Expeditions 🗺️</h2>
 
-Il est enfin temps de vous parlé du coeur du gameplay qui est les "Expeditions" :
+Il est enfin temps de vous parler du coeur du gameplay qui est les "Expeditions" :
 
 <h3>🏕️ Le camp</h3>
 

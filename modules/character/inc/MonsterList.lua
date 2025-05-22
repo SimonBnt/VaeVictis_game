@@ -8,7 +8,7 @@ local MonsterList = {
         {
             name = "Rat géant",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 50,     --currentHealth
             maxHealth = 50,         --maxHealth
             currentMana = 100,      --currentMana
@@ -42,7 +42,7 @@ local MonsterList = {
         {
             name = "Chauve souris",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 50,     --currentHealth
             maxHealth = 50,         --maxHealth
             currentMana = 100,      --currentMana
@@ -71,7 +71,7 @@ local MonsterList = {
         {
             name = "Feu follet",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 50,     --currentHealth
             maxHealth = 50,         --maxHealth
             currentMana = 100,      --currentMana
@@ -100,7 +100,7 @@ local MonsterList = {
         {
             name = "Araignée mangeuse d'homme",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 50,     --currentHealth
             maxHealth = 50,         --maxHealth
             currentMana = 100,      --currentMana
@@ -129,7 +129,7 @@ local MonsterList = {
         {
             name = "Orbite",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 50,     --currentHealth
             maxHealth = 50,         --maxHealth
             currentMana = 100,      --currentMana
@@ -158,7 +158,7 @@ local MonsterList = {
         {
             name = "Champignon vivant",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 50,     --currentHealth
             maxHealth = 50,         --maxHealth
             currentMana = 100,      --currentMana
@@ -187,7 +187,7 @@ local MonsterList = {
         {
             name = "Sylvestre juvénile",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 50,     --currentHealth
             maxHealth = 50,         --maxHealth
             currentMana = 100,      --currentMana
@@ -216,7 +216,7 @@ local MonsterList = {
         {
             name = "Larve mutante",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 50,     --currentHealth
             maxHealth = 50,         --maxHealth
             currentMana = 100,      --currentMana
@@ -245,7 +245,7 @@ local MonsterList = {
         {
             name = "Esprit en bouteille",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 50,     --currentHealth
             maxHealth = 50,         --maxHealth
             currentMana = 100,      --currentMana
@@ -274,7 +274,7 @@ local MonsterList = {
         {
             name = "Crâne maudit",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 50,     --currentHealth
             maxHealth = 50,         --maxHealth
             currentMana = 100,      --currentMana
@@ -308,7 +308,7 @@ local MonsterList = {
         {
             name = "Grimlin",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 75,     --currentHealth
             maxHealth = 75,         --maxHealth
             currentMana = 100,      --currentMana
@@ -337,7 +337,7 @@ local MonsterList = {
         {
             name = "Mort vivant",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -366,7 +366,7 @@ local MonsterList = {
         {
             name = "Plante carnivore",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -395,7 +395,7 @@ local MonsterList = {
         {
             name = "Escargot goliath",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -424,7 +424,7 @@ local MonsterList = {
         {
             name = "Murloc",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -453,7 +453,7 @@ local MonsterList = {
         {
             name = "Brasier",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -482,7 +482,7 @@ local MonsterList = {
         {
             name = "Slime juvénile",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -511,7 +511,7 @@ local MonsterList = {
         {
             name = "Ectoplasme",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -540,7 +540,7 @@ local MonsterList = {
         {
             name = "Kraken juvénile",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -569,7 +569,7 @@ local MonsterList = {
         {
             name = "Farfadet",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -604,7 +604,7 @@ local MonsterList = {
         {
             name = "Loup",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 75,     --currentHealth
             maxHealth = 75,         --maxHealth
             currentMana = 100,      --currentMana
@@ -633,7 +633,7 @@ local MonsterList = {
         {
             name = "Amalgame",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -662,7 +662,7 @@ local MonsterList = {
         {
             name = "Scorpion Géant",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -691,7 +691,7 @@ local MonsterList = {
         {
             name = "Boa",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -720,7 +720,7 @@ local MonsterList = {
         {
             name = "Gobelin",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -749,7 +749,7 @@ local MonsterList = {
         {
             name = "Squelette",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -778,7 +778,7 @@ local MonsterList = {
         {
             name = "Sanglier",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -807,7 +807,7 @@ local MonsterList = {
         {
             name = "Souche enchantée",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -836,7 +836,7 @@ local MonsterList = {
         {
             name = "Kobold",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -865,7 +865,7 @@ local MonsterList = {
         {
             name = "Crapeau guerrier",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -899,7 +899,7 @@ local MonsterList = {
         {
             name = "Goule",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 100,    --currentHealth
             maxHealth = 100,        --maxHealth
             currentMana = 100,      --currentMana
@@ -928,7 +928,7 @@ local MonsterList = {
         {
             name = "Ver géant",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -957,7 +957,7 @@ local MonsterList = {
         {
             name = "Banshee",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -986,7 +986,7 @@ local MonsterList = {
         {
             name = "Sorcière",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1015,7 +1015,7 @@ local MonsterList = {
         {
             name = "slime",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1044,7 +1044,7 @@ local MonsterList = {
         {
             name = "Revenant",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1073,7 +1073,7 @@ local MonsterList = {
         {
             name = "Guêpe géante",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1102,7 +1102,7 @@ local MonsterList = {
         {
             name = "Glouton",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1131,7 +1131,7 @@ local MonsterList = {
         {
             name = "Gnoll",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1160,7 +1160,7 @@ local MonsterList = {
         {
             name = "Guenaude",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1194,7 +1194,7 @@ local MonsterList = {
         {
             name = "Mimic",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1223,7 +1223,7 @@ local MonsterList = {
         {
             name = "Hobgobelin",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1252,7 +1252,7 @@ local MonsterList = {
         {
             name = "Experimentation ratée",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1281,7 +1281,7 @@ local MonsterList = {
         {
             name = "Diablotin",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1310,7 +1310,7 @@ local MonsterList = {
         {
             name = "Courtisane",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1339,7 +1339,7 @@ local MonsterList = {
         {
             name = "Mandragore",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1368,7 +1368,7 @@ local MonsterList = {
         {
             name = "Chimère",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1397,7 +1397,7 @@ local MonsterList = {
         {
             name = "Créature des marais",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1426,7 +1426,7 @@ local MonsterList = {
         {
             name = "Sylvestre",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1455,7 +1455,7 @@ local MonsterList = {
         {
             name = "Orc",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1489,7 +1489,7 @@ local MonsterList = {
         {
             name = "Faucheure",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1518,7 +1518,7 @@ local MonsterList = {
         {
             name = "Ent",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1547,7 +1547,7 @@ local MonsterList = {
         {
             name = "Vampire",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1576,7 +1576,7 @@ local MonsterList = {
         {
             name = "Réptilien",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1605,7 +1605,7 @@ local MonsterList = {
         {
             name = "Abomination",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1634,7 +1634,7 @@ local MonsterList = {
         {
             name = "Ogre",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1663,7 +1663,7 @@ local MonsterList = {
         {
             name = "Golem",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1692,7 +1692,7 @@ local MonsterList = {
         {
             name = "Gorgone",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1721,7 +1721,7 @@ local MonsterList = {
         {
             name = "Succube",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1750,7 +1750,7 @@ local MonsterList = {
         {
             name = "Centaure",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1784,7 +1784,7 @@ local MonsterList = {
         {
             name = "Griffon",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1813,7 +1813,7 @@ local MonsterList = {
         {
             name = "Loup Garou",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1842,7 +1842,7 @@ local MonsterList = {
         {
             name = "Raptor",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1871,7 +1871,7 @@ local MonsterList = {
         {
             name = "Cyclope",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1900,7 +1900,7 @@ local MonsterList = {
         {
             name = "Wyverne",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1929,7 +1929,7 @@ local MonsterList = {
         {
             name = "Minotaure",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1958,7 +1958,7 @@ local MonsterList = {
         {
             name = "Berserker",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -1987,7 +1987,7 @@ local MonsterList = {
         {
             name = "Kraken",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -2016,7 +2016,7 @@ local MonsterList = {
         {
             name = "Troll",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana
@@ -2045,7 +2045,7 @@ local MonsterList = {
         {
             name = "Démon",
             posX = 480,             --posX
-            posY = 128,             --posY
+            posY = 248,             --posY
             currentHealth = 60,     --currentHealth
             maxHealth = 60,         --maxHealth
             currentMana = 100,      --currentMana

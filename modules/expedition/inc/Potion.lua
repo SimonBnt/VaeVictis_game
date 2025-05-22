@@ -16,7 +16,7 @@ local Potion = {
         e = 10, 
         isD = true, 
         pX = 20, 
-        pY = 320
+        pY = 300
     }),
     manaPotion = Item:new({
         n = "Mana potion", 
@@ -26,7 +26,7 @@ local Potion = {
         e = 20, 
         isD = true, 
         pX = 42, 
-        pY = 320
+        pY = 300
     }),
 }
 

@@ -160,7 +160,7 @@ function Character:createActionBar(posX, posY)
 end
 
 function Character:actionBars()
-    self:createActionBar(self.posX - 16, self.posY + 64)
+    self:createActionBar(self.posX - 16, self.posY - 24)
 end
 
 -- afficher le nombre de coin en poche à coté du sprite de coin
