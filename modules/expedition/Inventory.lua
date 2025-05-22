@@ -10,8 +10,8 @@ Inventory.__index = Inventory
 function Inventory:new()
     local self = setmetatable({}, Inventory)
 
-    self.posX = 300
-    self.posY = 250
+    self.posX = 20
+    self.posY = 50
     self.width = 150
     self.height = 100
     self.radius = 4

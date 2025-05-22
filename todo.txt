@@ -66,11 +66,6 @@ Core Features :
     -Day/night cycle + hour system based on dt
     -Dynamic monster spawns depending on weather + time + day/night → monster pool changes (e.g., monsters X,Y,Z instead of A,B,C)
     -Bounty system → e.g. goblin = normal, goblinCommander = rare, only spawns if bounty is active + hint system in pre-fight event depending on player choices
-
-UX/UI Animations :
-    -Animated HP/MP bars → when losing HP/MP, a colored segment spawns at the lost portion, fades over time with particle effects for feedback
-
-Additional Features :
     -Hunting board → rewards for objectives completed during or after the run
     -Pre-fight events offering branching paths:
         -Example:
@@ -79,6 +74,10 @@ Additional Features :
                 -“A path to the swamp lies ahead… follow it?” → enter swamp zone → new event panel → “You arrive at the swamp” → choose →
                     -“Ripples in the water” → Hag fight
                     -“A corpse under a tree” → investigate → 3rd event → leads to fight, etc.
+    -Pre expedition trinket to increase the run rng
+
+UX/UI Animations :
+    -Animated HP/MP bars → when losing HP/MP, a colored segment spawns at the lost portion, fades over time with particle effects for feedback
 
 Hero Event Animations :
     -Replace hero sprite during event actions/choices:

@@ -14,7 +14,7 @@ function Hero:new(inventory)
     local hero = Character:new(
         "Héro",     -- name
         160,        -- posX
-        208,        -- posY
+        248,        -- posY
         100,        -- currentHealth
         100,        -- maxHealth
         100,        -- currentMana
@@ -24,7 +24,7 @@ function Hero:new(inventory)
         0,          -- currentXp
         100,        -- maxXp
         1,          -- lvl
-        10,         -- atk
+        100,         -- atk
         2,          -- def
         2,          -- int
         2,          -- dex

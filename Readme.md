@@ -41,18 +41,6 @@ Oh, and I almost forgot: Victis is a registered member of the famous Hunter’s 
 
 Every hunter is ranked from E to S (reminds me of something…). The better you are, the higher you climb. What’s the point? …Honestly, I’m not entirely sure.
 
-<h2 style="border-bottom: solid 1px">👻 Bestiary 👻</h2>
-
-At the moment, I’m planning 73 different monster types. You’ll find classic RPG enemies like rats, slimes, bats, skeletons, orcs, and many more — but also some more unusual creatures like mutant toads, giant snails, and eerie swamp creatures.
-
-All monsters are categorized by “Monster Rank” from E to S — with S being the rarest, most dangerous and fearsome, and E the most common and least threatening.
-
-Each monster has its preferred habitat and active time: some love sunny days, others lurk in dark forests at night, while some crawl through rainy swamps. It’s up to you to track them down, defeat them, and harvest their precious materials.
-
-Every monster drops mana fragments (with value depending on their rank, use it to reload your lantern), along with various components you can either sell or use to upgrade your equipment. Sometimes they’ll also drop useful items like potions or whetstones for sharpening your weapon.
-
-If you’re lucky, you might even find a chest on a defeated monster… but beware of mimics!
-
 <h2 style="border-bottom: solid 1px">⚔️ Fight system ⚔️</h2>
 
 Real-time combat where you can attack, parry, riposte, use items, and cast spells.
@@ -84,15 +72,70 @@ If you successfully parry, you’ll be able to riposte with an attack — and if
 
 I’ll let you discover the rest on your own.
 
+<h2 style="border-bottom: solid 1px">🗺️ Expeditions 🗺️</h2>
+
+Il est enfin temps de vous parler du coeur du gameplay qui est les "Expeditions" :
+
+<h3>🏕️ Le camp</h3>
+
+Avant chaque expeditions, vous commencerais dans votre camp de base, réchauffé par un réconfortant feu de camp. Vous y retrouverez vos outils de voyageurs et de survie, mais aussi certains outils qui vous permettrons de partir avec quelques avantages, comme par exemple une marmitte qui vous permettra de préparer des repas grace à certains composants récupérés dans vos expeditions précedentes. De quoi aiguiser votre arme par exemple ou simplement vous reposer avant de partir en chasse. Tout cela afin de bien vous preparer avant de partir en chasse.
+
+<h3>🔥 Le feu de camp</h3>
+
+En plus d'etre particulierement agréable et utile lorsqu'il est question de se secher apres avoir arpenter les maracage ou de faire griller un bon steak de sanglier, le feu de camp est surtout votre seul moyen de prendre quelques instants pour vous et réflechir à de nouveaux outils pour votre camp que vous aurez la possibilité de créer grace à différents matériaux trouvés durant vos expeditions.
+
+<h3>🎆 Lantern de mana et autel sacrificiel</h3>
+
+Dans votre camp de base vous aurez acces à l'element le plus important de votre périple, "L'autel sacrificiel". Si vous venez à mourir durant vos expeditions, ce qui risque d'arriver souvent, vous serez directement réanimer grace à l'autel. 
+Comment ca marche ? C'est plutot simple, cela fonctionne avec le principe d'échange équivalent. Vous voulez réanimer une ame, alors vous aurez besoin pour cela d'une quantité équivalente en ame de monstre (de préfrence mais vous pouvez sacrifier ce qui vous fait envie, je suis un créateur plutot magnanime).
+
+Heureusement les dieux (moi), vous ont fournis une outils "MAGIQUE" nommé "Lantern de mana" (numéro de série n°10055225, made in Ch..) qui vous permettra de collecter des ames sur les créatures vaincu. Pratique non ?
+Vous serez donc réanimable à l'envie et pour ce qui est du coup en ame, et bien disont que l'on s'arrangera au fur et à mesure de vos exploits.
+
+<h3>🌳 arbre de talent hors expedition</h3>
+
+Votre camp de base est aussi le seul endroit ou vous pourrez consommer vos ames dans votre "arbre de talent" accessible depuis l'interface de votre lantern de mana, fonctionnalité ajouté durant la mise a jour 6.1 de la "Lantern de mana", et comme tout arbre de talent, il vous faudra réunire un certain nombre d'unité à échanger contre des compétenses, des améliorations ou du contenu disponible durant vos expeditions. 
+Vous aurez aussi la possibilité d'améliorer votre lantern pour accueillir plus d'ame mais aussi pour la rendre plus performante au long terme et vous permettre d'aller de plus en plus loin s'en craindre la folie et la mort causé par le "Miasme".
+
+<h3>💎 Les monnaies</h3>
+
+Les "ames" : éléminez tous ce qui bouge et vous obtiendrais assez d'ames pour faire ce que bon vous semble. 
+Faites attention, si vous venez à mourir durant votre expedition, la moitié de votre mana accumulée durant votre expedition sera échangé contre votre misérable vie.
+
+Il sera aussi important de trouver de l'or de différentes manieres durant votre périple, il vous sera utile pour faire des achats en ville, améliorer votre équipement et bien d'autres choses. Votre or disparait automatiquement durant la mort, ce que je ne m'explique pas, comme on dit : "les voix de moi sont impenétrables" et "tu ne l'emportera pas dans la tombe".
+
+<h3>🏙 Les villages </h3>
+    <h4>Tavern</h4>
+    <h4>Marché</h4>
+    <h4>⚗ Alchimiste</h4>
+    <h4>Forgeron</h4>
+<h3>🏙 Les villages </h3>
+
+<h3>🔧 Améliorer l'equipement </h3>
+
+Vous etes maintenant pret pour partir à la chasse ! 
+
+<h2 style="border-bottom: solid 1px">👻 Bestiary 👻</h2>
+
+At the moment, I’m planning 73 different monster types. You’ll find classic RPG enemies like rats, slimes, bats, skeletons, orcs, and many more — but also some more unusual creatures like mutant toads, giant snails, and eerie swamp creatures.
+
+All monsters are categorized by “Monster Rank” from E to S — with S being the rarest, most dangerous and fearsome, and E the most common and least threatening.
+
+Each monster has its preferred habitat and active time: some love sunny days, others lurk in dark forests at night, while some crawl through rainy swamps. It’s up to you to track them down, defeat them, and harvest their precious materials.
+
+Every monster drops mana fragments (with value depending on their rank, use it to reload your lantern), along with various components you can either sell or use to upgrade your equipment. Sometimes they’ll also drop useful items like potions or whetstones for sharpening your weapon.
+
+If you’re lucky, you might even find a chest on a defeated monster… but beware of mimics!
+
 <h2 style="border-bottom: solid 1px">🎯 Objectives, Quests & Bounties 🎯</h2>
 
-<h3>🎯 Objective: </h3>
+<h3>🧭 Objective: </h3>
 
 Survive your expedition.
 Why be a monster hunter when your life hangs by a thread, even against the “weakest” enemies? Simple — it’s a job like any other. Besides, it’s what you’re best at.
 Just… try not to get crushed, shredded, devoured, burned, drained, dismembered, or dissolved. You’ll be fine.
 
-<h3>📰 Quests:</h3>
+<h3>📜 Quests:</h3>
 
 During your expedition, you might stumble across a village where you can rest, sell loot, upgrade your gear, and check the quest board for extra rewards on your next visit (assuming you don’t end up inside a giant snail by then).
 

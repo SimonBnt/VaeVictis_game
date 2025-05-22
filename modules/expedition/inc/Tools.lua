@@ -16,7 +16,7 @@ local Tools = {
         e = 40, 
         isD = true, 
         pX = 64, 
-        pY = 320
+        pY = 300
     }),
     whetstone = Item:new({
         name = "Whetstone", 
@@ -26,7 +26,7 @@ local Tools = {
         e = 1.25, 
         isD = true, 
         pX = 96, 
-        pY = 320
+        pY = 300
     }),
 }
 

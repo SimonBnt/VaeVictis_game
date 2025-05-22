@@ -12,6 +12,7 @@ local Grid = require("modules.interface.Grid")
 local Resources = require("modules.sprite.Resources")
 local SpriteManager = require("modules.sprite.SpriteManager")
 local ExportAllSpriteAnimation = require("modules.sprite.inc.ExportAllSpriteAnimation")
+local Paralax = require("modules.interface.Paralax")
 local Particle = require("modules.interface.Particle")
 local ShowTxt = require("modules.interface.ShowTxt")
 local Inventory = require("modules.expedition.Inventory")
@@ -20,7 +21,7 @@ local Tools = require("modules.expedition.inc.Tools")
 
 ---- // ---- SCREEN PARAMETERS ---- // ---- 
 
-local virtualWidth, virtualHeight = 640, 360
+local virtualWidth, virtualHeight = 640, 320
 local windowWidth, windowHeight = love.window.getDesktopDimensions()
 
 ---- // ---- LOCAL VAR ---- // ---- 
@@ -61,6 +62,8 @@ end
 
 function love.update(dt)
     if gameState then
+        Paralax.update(dt)
+
         -- Character update function
         hero:update(monster, dt, ShowDamageDealtAnimation)
 
@@ -190,7 +193,7 @@ function love.draw()
 ---- // ---- START TO DRAW ---- // ---- 
 
     -- interface
-    -- Grid.draw()
+    Paralax.draw()
     spriteManager:drawAnimation("coinAnimation", 0, 0)
     Potion.draw()
     Tools.draw()
@@ -218,7 +221,9 @@ function love.draw()
     -- Draw active messages
     ShowTxt.draw()
 
+    -- Grid.draw()
 ---- // ---- PUSH FINISH ---- // ---- 
+
 
     Push:finish()
 end
