@@ -14,10 +14,13 @@ local SpriteManager = require("modules.sprite.SpriteManager")
 local ExportAllSpriteAnimation = require("modules.sprite.inc.ExportAllSpriteAnimation")
 local Paralax = require("modules.interface.Paralax")
 local Particle = require("modules.interface.Particle")
+local Break = require("modules.interface.Break")
 local ShowTxt = require("modules.interface.ShowTxt")
+local MoveSet = require("modules.interface.MoveSet")
 local Inventory = require("modules.expedition.Inventory")
 local Potion = require("modules.expedition.inc.Potion")
 local Tools = require("modules.expedition.inc.Tools")
+
 
 ---- // ---- SCREEN PARAMETERS ---- // ---- 
 
@@ -37,6 +40,7 @@ monsterRespawnTimer = 0
                             ---- // ---- LOAD ---- // ---- 
 
 function love.load()
+    gameState = "gameIsRunning"
     -- screen parameter + push setup
     love.graphics.setDefaultFilter("nearest", "nearest")
 
@@ -56,13 +60,27 @@ function love.load()
     -- hero and monster instances initialization
     hero = Hero:new(inventory)
     monster = Monster:new()
+
+    function love.keypressed(key)
+        Control.keyPressed(key)
+
+        if key == "space" then
+            if gameState == "gameIsRunning" then
+                gameState = "break"
+            elseif gameState == "break" then
+                gameState = "gameIsRunning"
+            end
+        end
+    end
 end
 
                             ---- // ---- UPDATE ---- // ---- 
 
 function love.update(dt)
-    if gameState then
+    if gameState == "gameIsRunning" then
         Paralax.update(dt)
+
+        spriteManager:updateAnimation("heroAnimation", dt)
 
         -- Character update function
         hero:update(monster, dt, ShowDamageDealtAnimation)
@@ -173,7 +191,12 @@ function love.update(dt)
         Particle:update(dt)
 
         ShowTxt.update(dt)
+
     end
+    
+    -- if Control.keys.space then
+    --     gameState = Break.trigger(gameState)
+    -- end
 end
 
                             ---- // ---- RESIZE CALLBACK ---- // ---- 
@@ -192,38 +215,48 @@ function love.draw()
 
 ---- // ---- START TO DRAW ---- // ---- 
 
-    -- interface
-    Paralax.draw()
-    spriteManager:drawAnimation("coinAnimation", 0, 0)
-    Potion.draw()
-    Tools.draw()
-    inventory:draw()
-    
-    -- hero
-    hero:draw(64)
-    -- hero:drawSpec()
+    -- if gameState == "gameIsRunning" then
 
-    -- monster
-    monster:draw(512)
+        -- interface
+        Paralax.draw()
+        spriteManager:drawAnimation("coinAnimation", 0, 0)
+        Potion.draw()
+        Tools.draw()
+        MoveSet.draw(hero)
+        -- inventory:draw()
+        
+        -- hero
+        hero:draw(64)
+        -- hero:drawSpec()
+        -- spriteManager:drawAnimation("heroAnimation", hero.posX, hero.posY)
 
-    -- draw the hero sprite
-    spriteManager:drawSpriteCentered("hero", hero.posX, hero.posY - 4, 1,1)
+        -- draw the hero sprite
+        spriteManager:drawSpriteCentered("hero", hero.posX, hero.posY - 4, 1,1)
 
-    -- sprite sheet animation draw function
-    local monsterAnimationKey = monster.spriteKey .. "Animation"
-    spriteManager:drawAnimation(monsterAnimationKey, monster.posX - 32, monster.posY, 1, 1)
+        -- monster
+        monster:draw(512)
 
-    -- damage animation loop draw function
-    ShowDamageDealtAnimation:drawAnimationLoop()
+        -- sprite sheet animation draw function
+        local monsterAnimationKey = monster.spriteKey .. "Animation"
+        spriteManager:drawAnimation(monsterAnimationKey, monster.posX - 32, monster.posY, 1, 1)
 
-    -- Draw particles
-    Particle:draw()
-    -- Draw active messages
-    ShowTxt.draw()
+        -- damage animation loop draw function
+        ShowDamageDealtAnimation:drawAnimationLoop()
 
-    -- Grid.draw()
+        -- Draw particles
+        Particle:draw()
+
+        -- Draw active messages
+        ShowTxt.draw()
+
+        -- Grid.draw()
+
+    -- elseif gameState == "break" then
+    if gameState == "break" then
+        Break.draw()
+    end
+
 ---- // ---- PUSH FINISH ---- // ---- 
-
 
     Push:finish()
 end

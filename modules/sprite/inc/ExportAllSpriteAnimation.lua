@@ -13,7 +13,8 @@ function ExportAllSpriteAnimation:new(spriteManager)
     spriteManager:addAnimation("coinAnimation", "coin", 32, 32, 0.2),
 
     -- héro
-    spriteManager:addAnimation("heroAnimation", "hero", 64, 64, 0.2),
+    -- spriteManager:addAnimation("heroAnimation", "hero", 64, 64, 0.2),
+    spriteManager:addAnimation("heroAnimation", "hero", 128, 128, 0.2),
     -- monster class
     -- F
     spriteManager:addAnimation("giantRatAnimation", "giantRat", 64, 64, 0.2),

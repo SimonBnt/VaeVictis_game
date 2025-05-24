@@ -9,6 +9,7 @@ function Resources:new()
         coin = "assets/img/spriteSheet/interface/coin_spriteSheet.png",
 
         -- hero
+        -- hero = "assets/img/spriteSheet/Spritesheet 128/Knight_1/Idle.png",
         hero = "assets/img/sprite/hero/testSamurai_sprite_x64.png",
         -- hero = "assets/img/sprite/hero/testBloodBorne_sprite_x64.png",
 

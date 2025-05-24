@@ -20,6 +20,10 @@ Control.keys = {
     rightReleased = true,
     downReleased = true,
     leftReleased = true,
+
+    -- interface keys
+    space = false,
+    spaceReleased = true,
 }
 
 function Control.keyPressed(key)
@@ -49,6 +53,10 @@ function Control.keyPressed(key)
     if key == "escape" then
         love.event.quit()
     end
+
+    if key == "space" then
+        Control.keys.space = true
+    end
 end
 
 function Control.keyReleased(key)
@@ -72,6 +80,12 @@ function Control.keyReleased(key)
         Control.keys.down = false
     elseif key == "left" then
         Control.keys.left = false
+    end
+
+    -- interface keys
+
+    if key == "space" then
+        Control.keys.space = false
     end
 end
 
