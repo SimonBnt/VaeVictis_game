@@ -71,22 +71,7 @@ function Character:updateStunState(target ,dt)
     end
 end
 
-function Character:lvlUp()
-    self.lvl = self.lvl + 1
-    
-    self.maxHealth = self.maxHealth + 10
-    self.maxMana   = self.maxMana + 10
-    self.maxEnergy = self.maxEnergy + 10
-    
-    self.atk = self.atk + 1
-    self.def = self.def + 1
-    self.int = self.int + 1
-    self.dex = self.dex + 1
-    self.crit = self.crit + 1
-    self.atkSpeed = self.atkSpeed + 1
 
-    Particle:create("circle", 800, 1000, -50, 50, -80, -20, 0.5, 1.5, 0.2, 1, self.posX, self.posY, 100, true, {1,1,0})
-end
 
 ---- // ---- CHARCATER BATTLE FUNCTION ---- // ---- 
 

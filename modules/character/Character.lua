@@ -8,6 +8,7 @@
 -- local Potion = require("modules.expedition.inc.Potion")
 -- local Tools = require("modules.expedition.inc.Tools")
 
+local LevelUp = require("modules.expedition.LevelUp")
 local SlashEffect = require("modules.interface.SlashEffect")
 local ShowDamageDealtAnimation = require("modules.interface.ShowDamageDealtAnimation")
 local Control = require("modules.control.Control")
@@ -84,9 +85,9 @@ function Character:new(name, posX, posY, currentHealth, maxHealth, currentMana, 
     self.xpStatutBarPosY = 22
     
     -- energy
-    self.energyUsedByAtk = 20
-    self.energyUsedByTakingAtk = 10
-    self.energyUsedByMissingParry = 40
+    self.energyUsedByAtk = 10
+    self.energyUsedByTakingAtk = 5
+    self.energyUsedByMissingParry = 20
     
     -- parry
     self.parryCooldown = 0
@@ -212,6 +213,7 @@ function Character:isComboSuccessful()
     return true
 end
 
+
 ---- // ---- CHARACTER UPDATE FUNCTION GLOBAL CALL ---- // ---- 
 
 function Character:update(target, dt, ShowDamageDealtAnimation)
@@ -241,7 +243,6 @@ function Character:update(target, dt, ShowDamageDealtAnimation)
         end
     end
 end
-
 
 ---- // ---- CHARACTER DRAW FUNCTION GLOBAL CALL ---- // ---- 
 

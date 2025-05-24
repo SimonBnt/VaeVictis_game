@@ -13,9 +13,9 @@ end
 
 Attack.list = {
     default = {
-        Attack:new("Engager", 1, "right"),
-        Attack:new("Frappe", 2, "up"),
-        Attack:new("Enchaîner", 3, "left"),
+        Attack:new("Engager", 10, "right"),
+        Attack:new("Frappe", 20, "up"),
+        Attack:new("Enchaîner", 30, "left"),
     },
     F = {
         slice = Attack:new("Trancher", 3),
