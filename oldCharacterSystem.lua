@@ -1,81 +1,3 @@
-function Character:takeDamage(atk, def)
-    atkThrow = math.random(1, 10)
-    defThrow = math.random(1,10)
-    attack = atkThrow + atk
-    defence = defThrow + def
-    damage = math.max(0, attack - defence)
-
-    if self.currentHealth > 0 then
-        self.currentHealth = math.max(0, self.currentHealth - damage)
-
-        self.knockbackOriginX = self.posX
-
-        if self.isMonster then
-            self.velocityX = 20
-        else
-            self.velocityX = -20
-        end
-
-        self.knockbackTimer = 0.8
-        self.isReturningFromKnockback = false
-    end
-
-    Particle:create("circle", 5, 20, -50, 50, -50, 20, 0.5, 1.5, 1, 4, self.posX, self.posY, 100, true, {1,0,0})
-    return damage
-end
-
-function Character:updateKnockBackTimer(dt)
-    if self.knockbackTimer > 0 then
-        self.posX = self.posX + self.velocityX * dt
-        self.knockbackTimer = self.knockbackTimer - dt
-
-        -- gradually slow down the velocity
-        self.velocityX = self.velocityX * 0.9
-
-        if self.knockbackTimer <= 0 then
-            self.knockbackTimer = 0
-            self.isReturningFromKnockback = true
-        end
-    end
-    
-    if self.isReturningFromKnockback then
-        local speed = 20
-        local direction = self.knockbackOriginX - self.posX
-    
-        if math.abs(direction) < 1 then
-            self.posX = self.knockbackOriginX
-            self.isReturningFromKnockback = false
-            self.knockbackOriginX = nil
-        else
-            self.posX = self.posX + direction * dt * speed
-        end
-    end
-end
-
-function Character:stun(target)
-    target.isStunned = true
-    target.stunTimer = 8 -- par défaut 8 secondes
-    target.currentEnergy = 10
-    ShowTxt.trigger(target.name .. " est étourdit", 200, 100)
-end
-
-function Character:updateStunState(target ,dt)
-    if target.isStunned then
-        target.stunTimer = target.stunTimer - dt
-
-        if target.stunTimer <= 0 then
-            target.isStunned = false
-            target.stunTimer = 0
-            ShowTxt.trigger(target.name .. " n'est plus étourdit", 200, 100)
-        end
-    end
-end
-
-
-
----- // ---- CHARCATER BATTLE FUNCTION ---- // ---- 
-
--- Fonction publique qui gère l'attaque en fonction du type de personnage
 function Character:performAtk(target, dt, ShowDamageDealtAnimation)
     if self.isMonster then
         self:performMonsterAttack(target, dt, ShowDamageDealtAnimation)
@@ -84,7 +6,6 @@ function Character:performAtk(target, dt, ShowDamageDealtAnimation)
     end
 end
 
--- Gestion de l'attaque pour le héros
 function Character:performHeroAttack(target, dt, ShowDamageDealtAnimation)
     if target.currentHealth <= 0 then
         return
@@ -110,7 +31,6 @@ function Character:performHeroAttack(target, dt, ShowDamageDealtAnimation)
     end
 end
 
--- Attaque normale du héros
 function Character:normalAttack(target, ShowDamageDealtAnimation)
     self:useEnergy(self.energyUsedByAtk)
 
@@ -129,7 +49,6 @@ function Character:normalAttack(target, ShowDamageDealtAnimation)
     end
 end
 
--- Attaque riposte du héros
 function Character:fightBackAtk(target, ShowDamageDealtAnimation)
     local ripostDamage = target.def * 1.5
     local damage = target:takeDamage(ripostDamage, target.def)
@@ -145,7 +64,6 @@ function Character:fightBackAtk(target, ShowDamageDealtAnimation)
     self.canFightBack = false
 end
 
--- Contre-attaque du héros
 function Character:counterAttack(target, ShowDamageDealtAnimation)
     self.attackCooldown = 0
 
@@ -162,7 +80,6 @@ function Character:counterAttack(target, ShowDamageDealtAnimation)
     self.canCounterAtk = false
 end
 
--- Gestion de l'attaque pour le monstre
 function Character:performMonsterAttack(target, dt, ShowDamageDealtAnimation)
     if self.canAtk and not self.isAboutToAtk then
         self.isAboutToAtk = true
@@ -243,69 +160,6 @@ function Character:parry(target, dt)
         end
     end
 end
-
----- // ---- CHARCATER POST BATTLE FUNCTION ---- // ---- 
-
-function Character:getReward(monster)
-    local xpReward = monster.currentXp * monster.lvl
-    local coinReward = monster.coin
-
-    self.pendingXp = self.pendingXp or 0 + xpReward
-    self.pendingCoin = self.pendingCoin or 0 + coinReward
-
-    -- Ajout d’un objet dans l’inventaire selon la classe du monstre
-    if self.inventory then
-        local manaShard = manaShardsByClass[monster.class]
-        
-        if manaShard then
-            self.inventory:addItem(manaShard)
-            -- ShowTxt.trigger("Objet obtenu : " .. manaShard, 300, 160)
-        end
-        
-    end
-
-    -- self.inventory:addItem(Potion.healthPotion)
-    -- self.inventory:addItem(Potion.manaPotion)
-    -- self.inventory:addItem(Tools.bomb)
-    -- self.inventory:addItem(Tools.whetstone)
-end
-
-function Character:updateReward(dt)
-    local xpSpeed = 500    
-    local coinSpeed = 10
-    
-    if self.pendingXp and self.pendingXp >= 0 then
-        local xpToAdd = math.min(xpSpeed * dt, self.pendingXp)
-
-        self.currentXp = self.currentXp + xpToAdd
-        self.pendingXp = self.pendingXp - xpToAdd
-        
-        if self.maxXp then
-            local percentage = self.currentXp / self.maxXp
-            local xpBarEndX = 64 + (statutBarWitdh * percentage) -- Position X de la fin de la barre
-            
-            if percentage > 1 then
-                Particle:create("circle", 200, 300, -15, 15, -30, -10, 0.4, 1, 0.2, 0.4, xpBarEndX, self.xpStatutBarPosY + 1, 50, true, {0.7, 0.2, 1})
-            end
-        end
-    end
-    
-    if self.maxXp then
-        while self.currentXp >= self.maxXp do
-            self.currentXp = self.currentXp - self.maxXp
-            self:lvlUp()
-            self.maxXp = self.maxXp + (self.lvl * 100)
-        end
-    end
-    
-    if self.pendingCoin and self.pendingCoin > 0 then
-        local coinToAdd = math.min(coinSpeed * dt, self.pendingCoin)
-        self.coin = self.coin + coinToAdd
-        self.pendingCoin = self.pendingCoin - coinToAdd
-    end
-end
-
-
 
 ---- // ---- CHARCATER UPDATE FUNCTION GLOBAL CALL ---- // ---- 
 

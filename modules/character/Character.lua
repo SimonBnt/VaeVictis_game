@@ -1,23 +1,27 @@
 ---- // ---- MODULES ---- // ---- 
 
 -- local ShowTxt = require("modules.interface.ShowTxt")
+-- local Item = require("modules.expedition.Item")
 -- local Particle = require("modules.interface.Particle")
 -- local SpriteManager = require("modules.sprite.SpriteManager")
--- local Item = require("modules.expedition.Item")
 -- local manaShardsByClass = require("modules.expedition.inc.ManaShard")
 -- local Potion = require("modules.expedition.inc.Potion")
 -- local Tools = require("modules.expedition.inc.Tools")
 
-local LevelUp = require("modules.expedition.LevelUp")
 local SlashEffect = require("modules.interface.SlashEffect")
 local ShowDamageDealtAnimation = require("modules.interface.ShowDamageDealtAnimation")
 local Control = require("modules.control.Control")
 local Attack = require("modules.character.inc.Attack")
 local Bar = require("modules.character.inc.Bar")
+local KnockBack = require("modules.character.inc.KnockBack")
+local Damage = require("modules.character.inc.Damage")
+local Stun = require("modules.character.inc.Stun")
+local Reward = require("modules.character.progress.Reward")
 
 ---- // ---- LOCAL VAR ---- // ---- 
 
 local font = love.graphics.newFont(10)
+local infoFont = love.graphics.newFont(10)
 love.graphics.setFont(font)
 
 ---- // ---- CHARACTER OBJECT ---- // ---- 
@@ -109,14 +113,18 @@ end
 ---- // ---- CHARACTER INTERFACE FUNCTION ---- // ---- 
 
 function Character:info()
+    love.graphics.setFont(infoFont)
     love.graphics.setColor(1, 1, 1)
     love.graphics.print(self.name, self.posX - 16, self.posY - 20)
     love.graphics.print("Lvl : " .. self.lvl, 138, 16)
+    love.graphics.setFont(love.graphics.newFont()) -- reset to default font
 end
 
 function Character:coinInPocket()
+    love.graphics.setFont(infoFont)
     love.graphics.setColor(1,1,1,1)
-    love.graphics.print(self.coin, 32, 8)
+    love.graphics.print(math.floor(self.coin), 32, 8)
+    love.graphics.setFont(love.graphics.newFont()) -- reset to default font
 end
 
 function Character:createStatutBar(posX)
@@ -160,17 +168,23 @@ function Character:heroAtk(target, attack)
     if target.currentHealth <= 0 then return end
 
     self:useEnergy(self.energyUsedByAtk)
-
-    local damage = attack.damage
-    target.currentHealth = target.currentHealth - damage
-
-    ShowDamageDealtAnimation.trigger(damage, target.posX, target.posY)
-
-    local animationName = target.isMonster and "monster_idle" or "hero_idle"
-    SlashEffect.trigger(target, self.SpriteManager, animationName)
+    Damage.take(target, attack)
+    ShowDamageDealtAnimation.trigger(attack.damage, target.posX, target.posY)
 
     if not target.isStunned then
         target:useEnergy(target.energyUsedByTakingAtk)
+    end
+
+    -- local animationName = target.isMonster and "monster_idle" or "hero_idle"
+    -- SlashEffect.trigger(target, self.SpriteManager, animationName)
+
+    if target.currentHealth <= 0 then
+        target.isDead = true
+        Reward.get(self, target)
+    end
+
+    if not target.isDead and target.currentEnergy <= target.energyUsedByTakingAtk and not target.isStunned then
+        Stun.trigger(target)
     end
 end
 
@@ -203,7 +217,7 @@ function Character:isComboSuccessful()
     if #self.combo ~= #self.availableAtkList then
         return false
     end
-
+ 
     for i = 1, #self.combo do
         if self.combo[i] ~= self.availableAtkList[i] then
             return false
@@ -213,12 +227,14 @@ function Character:isComboSuccessful()
     return true
 end
 
-
 ---- // ---- CHARACTER UPDATE FUNCTION GLOBAL CALL ---- // ---- 
 
 function Character:update(target, dt, ShowDamageDealtAnimation)
     self:updateCooldown(dt)
     self:updateEnergyBar(dt)
+    KnockBack.update(target, dt)
+    Stun.update(target, dt)
+    Reward.update(self, dt)
 
     if not self.isMonster and self.canAtk then
         self.isAboutToAtk = Control.keys.down
@@ -246,7 +262,7 @@ end
 
 ---- // ---- CHARACTER DRAW FUNCTION GLOBAL CALL ---- // ---- 
 
-function Character:draw(posX, hero)
+function Character:draw(posX)
     self:drawStatut(posX)
 
     if self.canAtk then
