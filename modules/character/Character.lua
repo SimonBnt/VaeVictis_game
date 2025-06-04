@@ -9,6 +9,7 @@
 -- local Tools = require("modules.expedition.inc.Tools")
 
 local SlashEffect = require("modules.interface.SlashEffect")
+local Flash = require("modules.interface.Flash")
 local ShowDamageDealtAnimation = require("modules.interface.ShowDamageDealtAnimation")
 local Control = require("modules.control.Control")
 local Attack = require("modules.character.inc.Attack")
@@ -17,6 +18,7 @@ local KnockBack = require("modules.character.inc.KnockBack")
 local Damage = require("modules.character.inc.Damage")
 local Stun = require("modules.character.inc.Stun")
 local Reward = require("modules.character.progress.Reward")
+local Sound = require("modules.soundPlayer.Sound")
 
 ---- // ---- LOCAL VAR ---- // ---- 
 
@@ -167,6 +169,8 @@ end
 function Character:heroAtk(target, attack)
     if target.currentHealth <= 0 then return end
 
+    Sound.trigger("sword")
+
     self:useEnergy(self.energyUsedByAtk)
     Damage.take(target, attack)
     ShowDamageDealtAnimation.trigger(attack.damage, target.posX, target.posY)
@@ -175,8 +179,8 @@ function Character:heroAtk(target, attack)
         target:useEnergy(target.energyUsedByTakingAtk)
     end
 
-    -- local animationName = target.isMonster and "monster_idle" or "hero_idle"
-    -- SlashEffect.trigger(target, self.SpriteManager, animationName)
+    local animationName = target.isMonster and "monster_idle" or "hero_idle"
+    SlashEffect.trigger(target, self.SpriteManager, animationName)
 
     if target.currentHealth <= 0 then
         target.isDead = true
@@ -247,6 +251,7 @@ function Character:update(target, dt, ShowDamageDealtAnimation)
 
         if currentAttack and Control.keys[currentAttack.key] then
             self:heroAtk(target, currentAttack)
+            Flash.trigger(dt)
 
             -- Avance au prochain coup seulement après une attaque réussie
             self.atkIndex = self.atkIndex % #self.availableAtkList + 1
