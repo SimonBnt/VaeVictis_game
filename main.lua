@@ -87,6 +87,8 @@ function love.load()
         Control.keyPressed(key)
 
         -- game menu
+
+        -- faire feu de camp et carte
         
         if gameState == "gameMenu" then
             if key == "up" then
