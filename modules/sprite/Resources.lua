@@ -5,6 +5,9 @@ function Resources:new()
     local instance = setmetatable({}, self)
     
     instance.toLoad = {
+        -- menu
+        leftArrow = "assets/img/sprite/menu/leftArrow.png",
+
         -- interface
         coin = "assets/img/spriteSheet/interface/coin_spriteSheet.png",
 
