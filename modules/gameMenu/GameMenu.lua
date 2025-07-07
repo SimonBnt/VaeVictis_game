@@ -40,6 +40,7 @@ end
 
 function GameMenu.moveUp()
     GameMenu.selected = GameMenu.selected - 1
+    
     if GameMenu.selected < 1 then
         GameMenu.selected = #GameMenu.list -- Boucle tout en bas
     end
@@ -47,6 +48,7 @@ end
 
 function GameMenu.moveDown()
     GameMenu.selected = GameMenu.selected + 1
+
     if GameMenu.selected > #GameMenu.list then
         GameMenu.selected = 1 -- Boucle tout en haut
     end
@@ -54,9 +56,11 @@ end
 
 function GameMenu.draw()
     love.graphics.setFont(menuFont)
+    
     for i, choice in ipairs(GameMenu.list) do
         love.graphics.print(choice.name, x, choice.y)
     end
+
     GameMenu.arrow()
 end
 
