@@ -1,6 +1,5 @@
 ---- // ---- MODULES ---- // ---- 
 
--- local ShowTxt = require("modules.interface.ShowTxt")
 -- local Item = require("modules.expedition.Item")
 -- local Particle = require("modules.interface.Particle")
 -- local SpriteManager = require("modules.sprite.SpriteManager")
@@ -8,6 +7,7 @@
 -- local Potion = require("modules.expedition.inc.Potion")
 -- local Tools = require("modules.expedition.inc.Tools")
 
+local ShowTxt = require("modules.interface.ShowTxt")
 local SlashEffect = require("modules.interface.SlashEffect")
 local Flash = require("modules.interface.Flash")
 local ShowDamageDealtAnimation = require("modules.interface.ShowDamageDealtAnimation")
@@ -70,14 +70,19 @@ function Character:new(name, posX, posY, currentHealth, maxHealth, currentMana, 
 
     -- Initialise la liste d’attaques
 
-    self.maxMoveSet = isMonster and nil or 7
-    self.availableAtkList = {}
+    self.maxMoveSet = isMonster and 3 or 7
+    self.availableHeroAtkList = {}
+    self.availableMonsterAtkList = {}
     self.atkIndex = 1
     self.combo = {}
     self.comboSuccessTimer = 1
 
-    for _, atk in ipairs(Attack.list.default) do
-        table.insert(self.availableAtkList, atk)
+    for _, atk in ipairs(Attack.heroList.default) do
+        table.insert(self.availableHeroAtkList, atk)
+    end
+
+    for _, atk in ipairs(Attack.monsterList.default) do
+        table.insert(self.availableMonsterAtkList, atk)
     end
 
     -- monster atk
@@ -165,11 +170,44 @@ function Character:drawStatut(posX)
 end
 
 ---- // ---- CHARACTER FIGHT FUNCTION ---- // ---- 
+---- // ---- HERO ---- // ---- 
 
-function Character:heroAtk(target, attack)
+function Character:performHeroAtk(target, attack)
     if target.currentHealth <= 0 then return end
 
     Sound.trigger("sword")
+
+    self:useEnergy(self.energyUsedByAtk)
+    Damage.take(target, attack)
+    ShowDamageDealtAnimation.trigger(attack.damage, target.posX, target.posY)
+
+    if not target.isStunned then
+        target:useEnergy(target.energyUsedByTakingAtk)
+    end
+
+    local animationName = target.isMonster and "monster_idle" or "hero_idle"
+    SlashEffect.trigger(target, self.SpriteManager, animationName)
+
+    if target.currentHealth <= 0 then
+        target.isDead = true
+        Reward.get(self, target)
+    end
+
+    if not target.isDead and target.currentEnergy <= target.energyUsedByTakingAtk and not target.isStunned then
+        Stun.trigger(target)
+    end
+end
+
+---- // ---- MONSTER ---- // ---- 
+
+function Character:resetMonsterAttack()
+    self.attackCooldown = 0
+    self.isAboutToAtk = false
+    self.monsterAttackTimer = 0
+end
+
+function Character:performMonsterAtk(target, attack)
+    if target.currentHealth <= 0 then return end
 
     self:useEnergy(self.energyUsedByAtk)
     Damage.take(target, attack)
@@ -218,12 +256,12 @@ function Character:updateEnergyBar(dt)
 end
 
 function Character:isComboSuccessful()
-    if #self.combo ~= #self.availableAtkList then
+    if #self.combo ~= #self.availableHeroAtkList then
         return false
     end
  
     for i = 1, #self.combo do
-        if self.combo[i] ~= self.availableAtkList[i] then
+        if self.combo[i] ~= self.availableHeroAtkList[i] then
             return false
         end
     end
@@ -234,33 +272,68 @@ end
 ---- // ---- CHARACTER UPDATE FUNCTION GLOBAL CALL ---- // ---- 
 
 function Character:update(target, dt, ShowDamageDealtAnimation)
-    self:updateCooldown(dt)
-    self:updateEnergyBar(dt)
-    KnockBack.update(target, dt)
-    Stun.update(target, dt)
     Reward.update(self, dt)
 
-    if not self.isMonster and self.canAtk then
-        self.isAboutToAtk = Control.keys.down
-    else
-        self.isAboutToAtk = false
+    if not self.isDead then
+        Stun.update(target, dt)
+        KnockBack.update(target, dt)
+        self:updateEnergyBar(dt)
+        self:updateCooldown(dt)
+
+        if not self.isMonster and self.canAtk then
+            self.isAboutToAtk = Control.keys.down
+        else
+            self.isAboutToAtk = false
+        end
+
+        if not self.isMonster and self.isAboutToAtk and self.currentEnergy >= self.energyUsedByAtk then
+            local currentAttack = self.availableHeroAtkList[self.atkIndex]
+    
+            if currentAttack and Control.keys[currentAttack.key] then
+                self:performHeroAtk(target, currentAttack)
+                Flash.trigger(dt)
+    
+                -- Avance au prochain coup seulement après une attaque réussie
+                self.atkIndex = self.atkIndex % #self.availableHeroAtkList + 1
+                table.insert(self.combo, currentAttack)
+    
+                if self:isComboSuccessful() then
+                    self.attackCooldown = 0
+                    self.combo = {}
+                end
+            end
+        end
+    
+        if self.isMonster and self.canAtk and self.currentEnergy >= self.energyUsedByAtk then
+             local currentAttack = self.availableMonsterAtkList[self.atkIndex]
+    
+            if currentAttack then
+                self:performMonsterAtk(target, currentAttack)
+                Flash.trigger(dt)
+    
+                -- Avance au prochain coup seulement après une attaque réussie
+                -- self.atkIndex = self.atkIndex % #self.availableMonsterAtkList + 1
+                -- table.insert(self.combo, currentAttack)
+    
+                -- if self:isComboSuccessful() then
+                --     self.attackCooldown = 0
+                --     self.combo = {}
+                -- end
+
+                self:resetMonsterAttack()
+            end  
+        end
     end
 
-    if not self.isMonster and self.isAboutToAtk and self.currentEnergy >= self.energyUsedByAtk then
-        local currentAttack = self.availableAtkList[self.atkIndex]
-
-        if currentAttack and Control.keys[currentAttack.key] then
-            self:heroAtk(target, currentAttack)
-            Flash.trigger(dt)
-
-            -- Avance au prochain coup seulement après une attaque réussie
-            self.atkIndex = self.atkIndex % #self.availableAtkList + 1
-            table.insert(self.combo, currentAttack)
-
-            if self:isComboSuccessful() then
-                self.attackCooldown = 0
-                self.combo = {}
-            end
+    if self.isMonster then
+        if self.currentHealth <= 0 then
+            self.isDead = true
+            ShowTxt.trigger(self.name .. " est mort", 300, 200)
+        end
+    else
+        if self.currentHealth <= 0 then
+            self.isDead = true
+            ShowTxt.trigger(self.name .. " est mort", 300, 200)
         end
     end
 end
@@ -282,7 +355,7 @@ function Character:draw(posX)
     end
     
     if self.canAtk and self.currentEnergy >= self.energyUsedByAtk then
-        if isMonster then
+        if self.isMonster then
             self:isPreparingAtk()
         elseif self.isAboutToAtk then
             self:isPreparingAtk()

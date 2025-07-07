@@ -11,7 +11,7 @@ function Inventory:new()
     local self = setmetatable({}, Inventory)
 
     self.posX = 20
-    self.posY = 50
+    self.posY = 100
     self.width = 150
     self.height = 100
     self.radius = 4

@@ -32,6 +32,17 @@ function Resources:new()
         healthPotion = "assets/img/sprite/item/consumable/potion/healthPotion.png",
         manaPotion = "assets/img/sprite/item/consumable/potion/manaPotion.png",
 
+        -- weather
+
+        sunny = "assets/img/sprite/weather/sunny.png",
+        cloudy = "assets/img/sprite/weather/cloudy.png",
+        foggy = "assets/img/sprite/weather/foggy.png",
+        rain = "assets/img/sprite/weather/rain.png",
+        thunderstorm = "assets/img/sprite/weather/thunderstorm.png",
+        snow = "assets/img/sprite/weather/snow.png",
+        heatwave = "assets/img/sprite/weather/heatwave.png",
+        freezing = "assets/img/sprite/weather/freezing.png",
+
         -- monster class
         -- F class
         giantRat = "assets/img/sprite/monster/giantRat.png",

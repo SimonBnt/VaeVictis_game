@@ -26,17 +26,17 @@ end
 Paralax.scrolling = 0
 Paralax.scrollingSpeed = 20
 
-function Paralax.update(dt)
-    Paralax.scrolling = Paralax.scrolling - Paralax.scrollingSpeed * dt
+function Paralax:update(dt)
+    self.scrolling = self.scrolling - self.scrollingSpeed * dt
 end
 
-function Paralax.draw()
-    local w = Paralax.assets.sky.image:getWidth()
-    local localScroll = (Paralax.scrolling * Paralax.assets.sky.speed) % w
+function Paralax:draw()
+    local w = self.assets.sky.image:getWidth()
+    local localScroll = (self.scrolling * self.assets.sky.speed) % w
 
-    love.graphics.draw(Paralax.assets.sky.image, Paralax.assets.sky.quad, -localScroll, y)
+    love.graphics.draw(self.assets.sky.image, self.assets.sky.quad, -localScroll, y)
 
-    for _, layer in ipairs({ Paralax.assets.mountain, Paralax.assets.fog, Paralax.assets.ground }) do
+    for _, layer in ipairs({ self.assets.mountain, self.assets.fog, self.assets.ground }) do
         
         -- on module par la largeur de l'image pour un wrap fluide
         love.graphics.draw(layer.image, layer.quad, 0, 0)

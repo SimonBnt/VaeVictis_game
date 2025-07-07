@@ -5,7 +5,7 @@ function MoveSet.draw(hero)
     love.graphics.setFont(font)
     love.graphics.setColor(0, 0, 0)
 
-    local posY = 32
+    local posY = 50
     local posX = 20
     local w = 50
     local offset = 55
@@ -18,7 +18,7 @@ function MoveSet.draw(hero)
     posX = 20
 
     for i = 1, hero.maxMoveSet do
-        local atk = hero.availableAtkList[i]
+        local atk = hero.availableHeroAtkList[i]
 
         if atk then
             love.graphics.setColor(1, 1, 1)

@@ -4,23 +4,44 @@ local Push = require("lib.push")
 
 ---- // ---- MODULES ---- // ---- 
 
+-- control
+
 local Control = require("modules.control.Control")
-local ShowDamageDealtAnimation = require("modules.interface.ShowDamageDealtAnimation")
+
+-- gameMenu
+
+local GameMenu = require("modules.gameMenu.GameMenu")
+
+-- character
+
 local Hero = require("modules.character.Hero")
 local Monster = require("modules.character.Monster")
-local Grid = require("modules.interface.Grid")
-local Resources = require("modules.sprite.Resources")
-local SpriteManager = require("modules.sprite.SpriteManager")
-local ExportAllSpriteAnimation = require("modules.sprite.inc.ExportAllSpriteAnimation")
+
+-- interface
+
+local ShowDamageDealtAnimation = require("modules.interface.ShowDamageDealtAnimation")
 local Paralax = require("modules.interface.Paralax")
+local Grid = require("modules.interface.Grid")
 local Particle = require("modules.interface.Particle")
 local Break = require("modules.interface.Break")
 local ShowTxt = require("modules.interface.ShowTxt")
 local MoveSet = require("modules.interface.MoveSet")
-local Inventory = require("modules.expedition.Inventory")
+local WeatherTimeline = require("modules.interface.WeatherTimeline")
+local CalendarView = require("modules.interface.CalendarView")
+
+-- sprite
+
+local Resources = require("modules.sprite.Resources")
+local SpriteManager = require("modules.sprite.SpriteManager")
+local ExportAllSpriteAnimation = require("modules.sprite.inc.ExportAllSpriteAnimation")
+
+--  expedition
+
 local Potion = require("modules.expedition.inc.Potion")
 local Tools = require("modules.expedition.inc.Tools")
-
+local Inventory = require("modules.expedition.Inventory")
+local GameTime = require("modules.expedition.GameTime")
+local Calendar = require("modules.expedition.Calendar")
 
 ---- // ---- SCREEN PARAMETERS ---- // ---- 
 
@@ -40,7 +61,10 @@ monsterRespawnTimer = 0
                             ---- // ---- LOAD ---- // ---- 
 
 function love.load()
-    gameState = "gameIsRunning"
+    gameState = "gameMenu"
+
+    -- gameState = "gameIsRunning"
+
     -- screen parameter + push setup
     love.graphics.setDefaultFilter("nearest", "nearest")
 
@@ -64,11 +88,57 @@ function love.load()
     function love.keypressed(key)
         Control.keyPressed(key)
 
-        if key == "space" then
-            if gameState == "gameIsRunning" then
-                gameState = "break"
-            elseif gameState == "break" then
+        -- start game
+
+        if key == "e" then
+            if gameState == "gameMenu" then
                 gameState = "gameIsRunning"
+            end
+            return
+        end
+
+        -- quit menu
+
+        if key == "return" then
+            love.event.quit()
+        end
+
+        -- Toggle Calendar
+        if key == "c" then
+            if gameState == "calendar" then
+                gameState = "gameIsRunning"
+            elseif gameState == "gameIsRunning" then
+                gameState = "calendar"
+            end
+            return
+        end
+
+        -- Toggle Inventory
+        if key == "i" then
+            if gameState == "inventory" then
+                gameState = "gameIsRunning"
+            elseif gameState == "gameIsRunning" then
+                gameState = "inventory"
+            end
+            return
+        end
+
+        -- Toggle Pause
+        if key == "space" then
+            if gameState == "break" then
+                gameState = "gameIsRunning"
+            elseif gameState == "gameIsRunning" then
+                gameState = "break"
+            end
+            return
+        end
+
+        -- Gestion des pages du calendrier
+        if gameState == "calendar" then
+            if key == "right" then
+                CalendarView.page = math.min(CalendarView.page + 1, #Calendar.months)
+            elseif key == "left" then
+                CalendarView.page = math.max(CalendarView.page - 1, 1)
             end
         end
     end
@@ -78,9 +148,11 @@ end
 
 function love.update(dt)
     if gameState == "gameIsRunning" then
-        Paralax.update(dt)
+        local isNewDay = GameTime:update(dt)
+        Calendar:update(isNewDay)
+        Paralax:update(dt)
 
-        spriteManager:updateAnimation("heroAnimation", dt)
+        -- spriteManager:updateAnimation("heroAnimation", dt)
 
         -- Character update function
         hero:update(monster, dt, ShowDamageDealtAnimation)
@@ -189,14 +261,8 @@ function love.update(dt)
         spriteManager:updateAnimation("demon", dt)
 
         Particle:update(dt)
-
         ShowTxt.update(dt)
-
     end
-    
-    -- if Control.keys.space then
-    --     gameState = Break.trigger(gameState)
-    -- end
 end
 
                             ---- // ---- RESIZE CALLBACK ---- // ---- 
@@ -215,15 +281,18 @@ function love.draw()
 
 ---- // ---- START TO DRAW ---- // ---- 
 
-    -- if gameState == "gameIsRunning" then
+    if gameState == "gameMenu" then
+        GameMenu.draw()
+    elseif gameState == "gameIsRunning" then
 
         -- interface
-        Paralax.draw()
+        Paralax:draw()
+        GameTime:draw()
+        WeatherTimeline.draw(Calendar, GameTime)
         spriteManager:drawAnimation("coinAnimation", 0, 0)
         Potion.draw()
         Tools.draw()
         MoveSet.draw(hero)
-        -- inventory:draw()
         
         -- hero
         hero:draw(64)
@@ -251,9 +320,12 @@ function love.draw()
 
         -- Grid.draw()
 
-    -- elseif gameState == "break" then
-    if gameState == "break" then
+    elseif gameState == "break" then
         Break.draw()
+    elseif gameState == "calendar" then
+        CalendarView:draw()
+    elseif gameState == "inventory" then
+        inventory:draw()
     end
 
 ---- // ---- PUSH FINISH ---- // ---- 

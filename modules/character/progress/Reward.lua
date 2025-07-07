@@ -4,6 +4,9 @@ local manaShardsByClass = require("modules.expedition.inc.ManaShard")
 local Particle = require("modules.interface.Particle")
 local Bar = require("modules.character.inc.Bar")
 local LevelUp = require("modules.character.progress.LevelUp")
+local Potion = require("modules.expedition.inc.Potion")
+local Tools = require("modules.expedition.inc.Tools")
+
 
 local Reward = {}
 
