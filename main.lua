@@ -63,8 +63,6 @@ monsterRespawnTimer = 0
 function love.load()
     gameState = "gameMenu"
 
-    -- gameState = "gameIsRunning"
-
     -- screen parameter + push setup
     love.graphics.setDefaultFilter("nearest", "nearest")
 
@@ -88,19 +86,23 @@ function love.load()
     function love.keypressed(key)
         Control.keyPressed(key)
 
-        -- start game
-
-        if key == "e" then
-            if gameState == "gameMenu" then
-                gameState = "gameIsRunning"
+        -- game menu
+        
+        if gameState == "gameMenu" then
+            if key == "up" then
+                GameMenu.moveUp()
+                return
+            elseif key == "down" then
+                GameMenu.moveDown()
+                return
+            elseif key == "return" then
+                if GameMenu.selected == 1 then
+                    gameState = "gameIsRunning"
+                elseif GameMenu.selected == 5 then
+                    love.event.quit()
+                end
+                return
             end
-            return
-        end
-
-        -- quit menu
-
-        if key == "return" then
-            love.event.quit()
         end
 
         -- Toggle Calendar
