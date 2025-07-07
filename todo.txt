@@ -75,6 +75,32 @@ Core Features :
                     -“Ripples in the water” → Hag fight
                     -“A corpse under a tree” → investigate → 3rd event → leads to fight, etc.
     -Pre expedition trinket to increase the run rng
+    - manuel et haut fait 999
+    boite à mélange : 2 items pour découvrir un nouveau => haut fait
+    - carte tileset procedural :
+        - case par case
+        - chaque case représente un jour de voyage
+        - Progression temporelle (1 déplacement = 1 jour)
+        - Objectif : avancer le plus loin possible, découvrir des trésors, survivre 365 jours potentiellment.
+        - Éléments présents sur la carte :
+            - Trésors cachés
+            - Sites de fouille (archéologie, excavation, loot rare)
+            - Minerais exploitables (nécessitent outil ou compétence spécifique)
+            - Monstres élites (ennemis puissants, loot unique)
+            - Événements spéciaux (narratifs ou mécaniques)
+        - Système de Vision Spécifique
+            - Certaines récompenses (compétences, équipements, objets) permettent de révéler des éléments invisibles sur la carte, comme :
+                - Voir les minerais
+                - Localiser des trésors
+                - Détecter des monstres
+
+    - calendrier
+    - météo dynamique : 
+        - Visualisation sur une fenêtre de 13 jours (6 jours passés, aujourd’hui, 6 jours à venir)
+        - Certaines actions, ressources ou ennemis dépendent du climat
+    -  Soleil & Lune :
+        - Effets de parallax dynamiques représentant le cycle solaire/lunaire.
+        - Peuvent influencer l’ambiance, les créatures, ou les récoltes.    
 
 UX/UI Animations :
     -Animated HP/MP bars → when losing HP/MP, a colored segment spawns at the lost portion, fades over time with particle effects for feedback
@@ -96,5 +122,15 @@ Early Access:
 Full Game:
 [To be detailed]
 
+MAJ : 
+    - 2 héros jouables :
+        - Un épéiste avec bouclier
+        - Un magicien
+
 DLC Ideas:
-    -Add AI-controlled pet/familiar
+    - dlc Famillier : Add AI-controlled pet/familiar
+    - dlc chasseur : 8 chasseurs png + 4 ennemies
+    - dlc portail : sololeveling style
+    - dlc musicaux : métal, psy (psybient, psytrance, hitech), chiptune, epic. Bande son originalle jouée par un orchestre. 
+
+[? ---- // ---- ! ---- {PROJECT MUTATION} ---- ! ---- // ---- ?   ] 

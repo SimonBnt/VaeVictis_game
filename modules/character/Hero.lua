@@ -24,13 +24,13 @@ function Hero:new(inventory)
         0,          -- currentXp
         100,        -- maxXp
         1,          -- lvl
-        100,         -- atk
+        1,         -- atk
         2,          -- def
         2,          -- int
         2,          -- dex
         1,          -- crit
         50,          -- atkSpeed
-        0,         -- coin
+        20,         -- coin
         false       -- isMonster
     )
 

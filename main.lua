@@ -4,20 +4,44 @@ local Push = require("lib.push")
 
 ---- // ---- MODULES ---- // ---- 
 
+-- control
+
 local Control = require("modules.control.Control")
-local ShowDamageDealtAnimation = require("modules.interface.ShowDamageDealtAnimation")
+
+-- gameMenu
+
+local GameMenu = require("modules.gameMenu.GameMenu")
+
+-- character
+
 local Hero = require("modules.character.Hero")
 local Monster = require("modules.character.Monster")
+
+-- interface
+
+local ShowDamageDealtAnimation = require("modules.interface.ShowDamageDealtAnimation")
+local Paralax = require("modules.interface.Paralax")
 local Grid = require("modules.interface.Grid")
+local Particle = require("modules.interface.Particle")
+local Break = require("modules.interface.Break")
+local ShowTxt = require("modules.interface.ShowTxt")
+local MoveSet = require("modules.interface.MoveSet")
+local WeatherTimeline = require("modules.interface.WeatherTimeline")
+local CalendarView = require("modules.interface.CalendarView")
+
+-- sprite
+
 local Resources = require("modules.sprite.Resources")
 local SpriteManager = require("modules.sprite.SpriteManager")
 local ExportAllSpriteAnimation = require("modules.sprite.inc.ExportAllSpriteAnimation")
-local Paralax = require("modules.interface.Paralax")
-local Particle = require("modules.interface.Particle")
-local ShowTxt = require("modules.interface.ShowTxt")
-local Inventory = require("modules.expedition.Inventory")
+
+--  expedition
+
 local Potion = require("modules.expedition.inc.Potion")
 local Tools = require("modules.expedition.inc.Tools")
+local Inventory = require("modules.expedition.Inventory")
+local GameTime = require("modules.expedition.GameTime")
+local Calendar = require("modules.expedition.Calendar")
 
 ---- // ---- SCREEN PARAMETERS ---- // ---- 
 
@@ -37,6 +61,10 @@ monsterRespawnTimer = 0
                             ---- // ---- LOAD ---- // ---- 
 
 function love.load()
+    gameState = "gameMenu"
+
+    -- gameState = "gameIsRunning"
+
     -- screen parameter + push setup
     love.graphics.setDefaultFilter("nearest", "nearest")
 
@@ -56,13 +84,75 @@ function love.load()
     -- hero and monster instances initialization
     hero = Hero:new(inventory)
     monster = Monster:new()
+
+    function love.keypressed(key)
+        Control.keyPressed(key)
+
+        -- start game
+
+        if key == "e" then
+            if gameState == "gameMenu" then
+                gameState = "gameIsRunning"
+            end
+            return
+        end
+
+        -- quit menu
+
+        if key == "return" then
+            love.event.quit()
+        end
+
+        -- Toggle Calendar
+        if key == "c" then
+            if gameState == "calendar" then
+                gameState = "gameIsRunning"
+            elseif gameState == "gameIsRunning" then
+                gameState = "calendar"
+            end
+            return
+        end
+
+        -- Toggle Inventory
+        if key == "i" then
+            if gameState == "inventory" then
+                gameState = "gameIsRunning"
+            elseif gameState == "gameIsRunning" then
+                gameState = "inventory"
+            end
+            return
+        end
+
+        -- Toggle Pause
+        if key == "space" then
+            if gameState == "break" then
+                gameState = "gameIsRunning"
+            elseif gameState == "gameIsRunning" then
+                gameState = "break"
+            end
+            return
+        end
+
+        -- Gestion des pages du calendrier
+        if gameState == "calendar" then
+            if key == "right" then
+                CalendarView.page = math.min(CalendarView.page + 1, #Calendar.months)
+            elseif key == "left" then
+                CalendarView.page = math.max(CalendarView.page - 1, 1)
+            end
+        end
+    end
 end
 
                             ---- // ---- UPDATE ---- // ---- 
 
 function love.update(dt)
-    if gameState then
-        Paralax.update(dt)
+    if gameState == "gameIsRunning" then
+        local isNewDay = GameTime:update(dt)
+        Calendar:update(isNewDay)
+        Paralax:update(dt)
+
+        -- spriteManager:updateAnimation("heroAnimation", dt)
 
         -- Character update function
         hero:update(monster, dt, ShowDamageDealtAnimation)
@@ -171,7 +261,6 @@ function love.update(dt)
         spriteManager:updateAnimation("demon", dt)
 
         Particle:update(dt)
-
         ShowTxt.update(dt)
     end
 end
@@ -192,38 +281,54 @@ function love.draw()
 
 ---- // ---- START TO DRAW ---- // ---- 
 
-    -- interface
-    Paralax.draw()
-    spriteManager:drawAnimation("coinAnimation", 0, 0)
-    Potion.draw()
-    Tools.draw()
-    inventory:draw()
-    
-    -- hero
-    hero:draw(64)
-    -- hero:drawSpec()
+    if gameState == "gameMenu" then
+        GameMenu.draw()
+    elseif gameState == "gameIsRunning" then
 
-    -- monster
-    monster:draw(512)
+        -- interface
+        Paralax:draw()
+        GameTime:draw()
+        WeatherTimeline.draw(Calendar, GameTime)
+        spriteManager:drawAnimation("coinAnimation", 0, 0)
+        Potion.draw()
+        Tools.draw()
+        MoveSet.draw(hero)
+        
+        -- hero
+        hero:draw(64)
+        -- hero:drawSpec()
+        -- spriteManager:drawAnimation("heroAnimation", hero.posX, hero.posY)
 
-    -- draw the hero sprite
-    spriteManager:drawSpriteCentered("hero", hero.posX, hero.posY - 4, 1,1)
+        -- draw the hero sprite
+        spriteManager:drawSpriteCentered("hero", hero.posX, hero.posY - 4, 1,1)
 
-    -- sprite sheet animation draw function
-    local monsterAnimationKey = monster.spriteKey .. "Animation"
-    spriteManager:drawAnimation(monsterAnimationKey, monster.posX - 32, monster.posY, 1, 1)
+        -- monster
+        monster:draw(512)
 
-    -- damage animation loop draw function
-    ShowDamageDealtAnimation:drawAnimationLoop()
+        -- sprite sheet animation draw function
+        local monsterAnimationKey = monster.spriteKey .. "Animation"
+        spriteManager:drawAnimation(monsterAnimationKey, monster.posX - 32, monster.posY, 1, 1)
 
-    -- Draw particles
-    Particle:draw()
-    -- Draw active messages
-    ShowTxt.draw()
+        -- damage animation loop draw function
+        ShowDamageDealtAnimation:drawAnimationLoop()
 
-    -- Grid.draw()
+        -- Draw particles
+        Particle:draw()
+
+        -- Draw active messages
+        ShowTxt.draw()
+
+        -- Grid.draw()
+
+    elseif gameState == "break" then
+        Break.draw()
+    elseif gameState == "calendar" then
+        CalendarView:draw()
+    elseif gameState == "inventory" then
+        inventory:draw()
+    end
+
 ---- // ---- PUSH FINISH ---- // ---- 
-
 
     Push:finish()
 end
