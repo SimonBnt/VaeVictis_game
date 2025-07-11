@@ -35,6 +35,7 @@ local WeatherTimeline = require("modules.interface.WeatherTimeline")
 local CalendarView = require("modules.interface.CalendarView")
 local Coin = require("modules.interface.Coin")
 local Transition = require("modules.interface.Transition")
+local LoadingScreen = require("modules.interface.LoadingScreen")
 
 -- sprite
 local Resources = require("modules.sprite.Resources")
@@ -87,7 +88,12 @@ function love.load()
                 return
             elseif key == "return" then
                 if GameMenu.selected == 1 then
-                    Transition:start("campfire", function()
+                    Transition:start("campfire", function(setProgress)
+                        for i=1, 20 do
+                            setProgress(i/20)
+                            coroutine.yield()
+                        end
+                    end, function()
                         CampFire:load(spriteManager)
                     end)
                 elseif GameMenu.selected == 5 then
@@ -177,6 +183,8 @@ function love.load()
             end
             return
         end
+
+        -- tableau de résultat de fin d'expedition
     end
 end
 
