@@ -5,20 +5,25 @@ local Push = require("lib.push")
 ---- // ---- MODULES ---- // ---- 
 
 -- control
-
 local Control = require("modules.control.Control")
 
--- gameMenu
+-- gamestate
+local GameState = require ("modules.gamestate.GameState")
 
+-- gamemenu
 local GameMenu = require("modules.gameMenu.GameMenu")
 
--- character
+-- campfire
+local CampFire = require("modules.campfire.CampFire")
 
+-- worldmap
+local WorldMap = require("modules.worldMap.WorldMap")
+
+-- character
 local Hero = require("modules.character.Hero")
 local Monster = require("modules.character.Monster")
 
 -- interface
-
 local ShowDamageDealtAnimation = require("modules.interface.ShowDamageDealtAnimation")
 local Paralax = require("modules.interface.Paralax")
 local Grid = require("modules.interface.Grid")
@@ -28,15 +33,16 @@ local ShowTxt = require("modules.interface.ShowTxt")
 local MoveSet = require("modules.interface.MoveSet")
 local WeatherTimeline = require("modules.interface.WeatherTimeline")
 local CalendarView = require("modules.interface.CalendarView")
+local Coin = require("modules.interface.Coin")
+local Transition = require("modules.interface.Transition")
+local LoadingScreen = require("modules.interface.LoadingScreen")
 
 -- sprite
-
 local Resources = require("modules.sprite.Resources")
 local SpriteManager = require("modules.sprite.SpriteManager")
 local ExportAllSpriteAnimation = require("modules.sprite.inc.ExportAllSpriteAnimation")
 
 --  expedition
-
 local Potion = require("modules.expedition.inc.Potion")
 local Tools = require("modules.expedition.inc.Tools")
 local Inventory = require("modules.expedition.Inventory")
@@ -51,46 +57,29 @@ local windowWidth, windowHeight = love.window.getDesktopDimensions()
 ---- // ---- LOCAL VAR ---- // ---- 
 
 local resources, spriteManager, exportAllSpriteAnimation
-local gameState = true
 
 -- stocker les animations en cour --
 damageAnimations = {}
-
 monsterRespawnTimer = 0
 
                             ---- // ---- LOAD ---- // ---- 
 
 function love.load()
-    gameState = "gameMenu"
-
-    -- screen parameter + push setup
     love.graphics.setDefaultFilter("nearest", "nearest")
-
     Push:setupScreen(virtualWidth, virtualHeight, windowWidth, windowHeight, {fullscreen = true, vsync = true, resizable = true, pixelperfect = true})
 
-    -- load every resources and modules
-    Control.load()
     resources = Resources:new()
     spriteManager = SpriteManager:new(resources)
-
-    -- all sprite here
     exportAllSpriteAnimation = ExportAllSpriteAnimation:new(spriteManager)
-
-    -- inventory
-    inventory = Inventory:new()
-
-    -- hero and monster instances initialization
-    hero = Hero:new(inventory)
-    monster = Monster:new()
+    
+    GameState.current = "gamemenu"
+    Control.load()
 
     function love.keypressed(key)
         Control.keyPressed(key)
 
         -- game menu
-
-        -- faire feu de camp et carte
-        
-        if gameState == "gameMenu" then
+        if GameState.current == "gamemenu" then
             if key == "up" then
                 GameMenu.moveUp()
                 return
@@ -99,7 +88,14 @@ function love.load()
                 return
             elseif key == "return" then
                 if GameMenu.selected == 1 then
-                    gameState = "gameIsRunning"
+                    Transition:start("campfire", function(setProgress)
+                        for i=1, 20 do
+                            setProgress(i/20)
+                            coroutine.yield()
+                        end
+                    end, function()
+                        CampFire:load(spriteManager)
+                    end)
                 elseif GameMenu.selected == 5 then
                     love.event.quit()
                 end
@@ -107,59 +103,107 @@ function love.load()
             end
         end
 
-        -- Toggle Calendar
-        if key == "c" then
-            if gameState == "calendar" then
-                gameState = "gameIsRunning"
-            elseif gameState == "gameIsRunning" then
-                gameState = "calendar"
+        -- loading
+        if GameState.current == "loading" then
+            
+        end
+
+        -- campfire
+        if GameState.current == "campfire" then
+            if key == "return" then
+                GameState.current = "worldmap"
             end
             return
         end
 
-        -- Toggle Inventory
-        if key == "i" then
-            if gameState == "inventory" then
-                gameState = "gameIsRunning"
-            elseif gameState == "gameIsRunning" then
-                gameState = "inventory"
+        -- worldmap
+        if GameState.current == "worldmap" then
+            if key == "return" then
+                GameState.current = "expedition"
+                hero = Hero:new(inventory)
+                monster = Monster:new()
+                inventory = Inventory:new()
+                Coin:load(spriteManager)
             end
             return
         end
 
-        -- Toggle Pause
-        if key == "space" then
-            if gameState == "break" then
-                gameState = "gameIsRunning"
-            elseif gameState == "gameIsRunning" then
-                gameState = "break"
+        -- prefightevent
+        if GameState.current == "prefightevent" then
+            
+        end
+
+        -- expedition
+        if GameState.current == "expedition" then
+            -- open calendar
+            if key == "c" then
+                GameState.current = "calendar"
+                return
+            end
+            
+            -- open inventory
+            if key == "i" then
+                GameState.current = "inventory"
+                return
+            end
+
+            -- trigger break
+            if key == "space" then
+                GameState.current = "break"
+                return
+            end
+        end
+
+        -- stop break
+        if GameState.current == "break" then
+            if key == "space" then
+                GameState.current = "expedition"
             end
             return
         end
 
-        -- Gestion des pages du calendrier
-        if gameState == "calendar" then
+        -- close inventory
+        if GameState.current == "inventory" then
+            if key == "i" then
+                GameState.current = "expedition"
+            end
+            return
+        end
+
+        -- calendar pages and close
+        if GameState.current == "calendar" then
+            if key == "c" then
+                GameState.current = "expedition"
+            end
+
             if key == "right" then
                 CalendarView.page = math.min(CalendarView.page + 1, #Calendar.months)
             elseif key == "left" then
                 CalendarView.page = math.max(CalendarView.page - 1, 1)
             end
+            return
         end
+
+        -- tableau de résultat de fin d'expedition
     end
 end
 
                             ---- // ---- UPDATE ---- // ---- 
 
 function love.update(dt)
-    if gameState == "gameIsRunning" then
+    Transition:update(dt)
+    if Transition.active then return end
+
+    if GameState.current == "campfire" then
+        Paralax:update(dt)
+        CampFire:update(dt)
+    elseif GameState.current == "expedition" then
         local isNewDay = GameTime:update(dt)
         Calendar:update(isNewDay)
         Paralax:update(dt)
-
-        -- spriteManager:updateAnimation("heroAnimation", dt)
-
-        -- Character update function
+        Coin:update(dt)
         hero:update(monster, dt, ShowDamageDealtAnimation)
+        ShowDamageDealtAnimation:animationLoop(dt)
 
         if monster and monster.isDead then
             monsterRespawnTimer = monsterRespawnTimer + dt
@@ -172,12 +216,6 @@ function love.update(dt)
         else
             monster:update(hero, dt, ShowDamageDealtAnimation)
         end
-
-        -- animation loop if animation currently in "damageAnimation{}"
-        ShowDamageDealtAnimation:animationLoop(dt)
-
-        -- sprite sheet animation update function
-        spriteManager:updateAnimation("coinAnimation", dt)
 
         -- monsterList
         -- F class monsters
@@ -285,52 +323,41 @@ function love.draw()
 
 ---- // ---- START TO DRAW ---- // ---- 
 
-    if gameState == "gameMenu" then
+    if GameState.current == "gamemenu" then
         GameMenu.draw()
-    elseif gameState == "gameIsRunning" then
-
-        -- interface
+    elseif GameState.current == "campfire" then
+        Paralax:draw()
+        CampFire.draw()
+    elseif GameState.current == "worldmap" then
+        WorldMap.draw()
+    elseif GameState.current == "expedition" then
         Paralax:draw()
         GameTime:draw()
         WeatherTimeline.draw(Calendar, GameTime)
-        spriteManager:drawAnimation("coinAnimation", 0, 0)
         Potion.draw()
         Tools.draw()
         MoveSet.draw(hero)
+        Coin.draw()
+        Particle:draw()
+        ShowDamageDealtAnimation:drawAnimationLoop()
+        ShowTxt.draw()
+        -- Grid.draw()
         
-        -- hero
         hero:draw(64)
-        -- hero:drawSpec()
-        -- spriteManager:drawAnimation("heroAnimation", hero.posX, hero.posY)
-
-        -- draw the hero sprite
         spriteManager:drawSpriteCentered("hero", hero.posX, hero.posY - 4, 1,1)
 
-        -- monster
         monster:draw(512)
-
-        -- sprite sheet animation draw function
         local monsterAnimationKey = monster.spriteKey .. "Animation"
         spriteManager:drawAnimation(monsterAnimationKey, monster.posX - 32, monster.posY, 1, 1)
-
-        -- damage animation loop draw function
-        ShowDamageDealtAnimation:drawAnimationLoop()
-
-        -- Draw particles
-        Particle:draw()
-
-        -- Draw active messages
-        ShowTxt.draw()
-
-        -- Grid.draw()
-
-    elseif gameState == "break" then
+    elseif GameState.current == "break" then
         Break.draw()
-    elseif gameState == "calendar" then
+    elseif GameState.current == "calendar" then
         CalendarView:draw()
-    elseif gameState == "inventory" then
+    elseif GameState.current == "inventory" then
         inventory:draw()
     end
+
+    Transition:draw()
 
 ---- // ---- PUSH FINISH ---- // ---- 
 

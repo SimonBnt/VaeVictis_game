@@ -10,24 +10,6 @@ function SpriteManager:new(resources)
     return instance
 end
 
-function SpriteManager:drawSpriteCentered(imageKey, x, y, scaleX, scaleY)
-    local image = self.resources:getImage(imageKey)
-    
-    -- Calculer l'offset pour centrer l'image
-    local offsetX = image:getWidth() / 2
-    local offsetY = image:getHeight() / 2
-    
-    -- Dessiner l'image centrée
-    love.graphics.draw(
-        image, 
-        x - offsetX, 
-        y - offsetY, 
-        0, 
-        scaleX or 1, 
-        scaleY or 1
-    )
-end
-
 -- Fonction pour découper une spritesheet en quads
 
 function SpriteManager:createQuads(imageKey, frameWidth, frameHeight)

@@ -8,6 +8,14 @@ function Resources:new()
         -- menu
         leftArrow = "assets/img/sprite/menu/leftArrow.png",
 
+        -- campfire
+
+        bag = "assets/img/sprite/campfire/bag.png",
+        log = "assets/img/sprite/campfire/log.png",
+        campfire = "assets/img/spriteSheet/campfire/campfire.png",
+        campfireCooking = "assets/img/sprite/campfire/campfireCooking.png",
+        tent = "assets/img/sprite/campfire/tent.png",
+
         -- interface
         coin = "assets/img/spriteSheet/interface/coin_spriteSheet.png",
 
