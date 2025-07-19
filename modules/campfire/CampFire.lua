@@ -13,11 +13,11 @@ CampFire.hud = {
     { name = "Journal de quete", y = 20 },
 }
 
-function CampFire:load(manager)
+function CampFire.load(manager)
     spriteManager = manager
 end
 
-function CampFire:update(dt)
+function CampFire.update(dt)
     if spriteManager then
         spriteManager:updateAnimation("campfireAnimation", dt)
     end

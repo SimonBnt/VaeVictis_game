@@ -1,6 +1,7 @@
 ---- // ---- LIBRARY ---- // ---- 
 
-local Push = require("lib.push")
+local Push = require("lib.PUSH.push")
+local STI = require("lib.STI.sti")
 
 ---- // ---- MODULES ---- // ---- 
 
@@ -51,7 +52,7 @@ local Calendar = require("modules.expedition.Calendar")
 
 ---- // ---- SCREEN PARAMETERS ---- // ---- 
 
-local virtualWidth, virtualHeight = 640, 320
+local virtualWidth, virtualHeight = 640, 360
 local windowWidth, windowHeight = love.window.getDesktopDimensions()
 
 ---- // ---- LOCAL VAR ---- // ---- 
@@ -61,6 +62,9 @@ local resources, spriteManager, exportAllSpriteAnimation
 -- stocker les animations en cour --
 damageAnimations = {}
 monsterRespawnTimer = 0
+
+local worldMapLoaded = false
+local heroMapX, heroMapY = 5, 5
 
                             ---- // ---- LOAD ---- // ---- 
 
@@ -94,7 +98,7 @@ function love.load()
                             coroutine.yield()
                         end
                     end, function()
-                        CampFire:load(spriteManager)
+                        CampFire.load(spriteManager)
                     end)
                 elseif GameMenu.selected == 5 then
                     love.event.quit()
@@ -111,26 +115,70 @@ function love.load()
         -- campfire
         if GameState.current == "campfire" then
             if key == "return" then
-                GameState.current = "worldmap"
-            end
+                Transition:start("worldmap", function(setProgress)
+                        for i=1, 20 do
+                            setProgress(i/20)
+                            coroutine.yield()
+                        end
+                    end, function()
+                        if not worldMapLoaded then
+                            WorldMap.load()
+                            worldMapLoaded = true
+                        end
+                    end)
+                end
             return
         end
 
         -- worldmap
         if GameState.current == "worldmap" then
-            if key == "return" then
-                GameState.current = "expedition"
-                hero = Hero:new(inventory)
-                monster = Monster:new()
-                inventory = Inventory:new()
-                Coin:load(spriteManager)
-            end
+            local oldX, oldY = heroMapX, heroMapY
+
+            if key == "up" then
+                heroMapY = math.max(1, heroMapY-1)
+            elseif key == "down" then
+                heroMapY = math.min(WorldMap.getMap().height, heroMapY+1)
+            elseif key == "left" then
+                heroMapX = math.max(1, heroMapX-1)
+            elseif key == "right" then
+                heroMapX = math.min(WorldMap.getMap().width, heroMapX+1)
+            elseif key == "return" then
+                Transition:start("expedition", function(setProgress)
+                        for i=1, 20 do
+                            setProgress(i/20)
+                            coroutine.yield()
+                        end
+                    end, function()
+                        hero = Hero:new(inventory)
+                        monster = Monster:new()
+                        inventory = Inventory:new()
+                        Coin:load(spriteManager)
+                    end)
+                end
+
+                local map = WorldMap.getMap()
+
+                -- if map then
+                --     local tileCave = WorldMap.getTileAt(heroMapX, heroMapY, "cave")
+                --     local tileVillage = WorldMap.getTileAt(heroMapX, heroMapY, "house") -- ou layer "village" si tu as une couche dédiée
+                --     if tileCave and tileCave.id > 0 then
+                --         GameState.current = "cave"
+                --         -- Tu pourras charger une nouvelle map ici
+                --         return
+                --     elseif tileVillage and tileVillage.id > 0 then
+                --         GameState.current = "village"
+                --         -- Charger une nouvelle map village ici
+                --         return
+                --     end
+                -- end
             return
         end
 
         -- prefightevent
         if GameState.current == "prefightevent" then
             
+            -- choice
+            -- trigger choice
         end
 
         -- expedition
@@ -153,6 +201,14 @@ function love.load()
                 return
             end
         end
+
+        -- get reward and soul
+        -- postFightResultSheet
+        -- scene + hero move
+        -- loop x 3
+        -- worldmap
+        -- choose other destination
+        -- loop
 
         -- stop break
         if GameState.current == "break" then
@@ -196,7 +252,9 @@ function love.update(dt)
 
     if GameState.current == "campfire" then
         Paralax:update(dt)
-        CampFire:update(dt)
+        CampFire.update(dt)
+    elseif GameState.current == "worldmap" then   
+        WorldMap.update(dt)
     elseif GameState.current == "expedition" then
         local isNewDay = GameTime:update(dt)
         Calendar:update(isNewDay)
@@ -320,7 +378,7 @@ function love.draw()
 ---- // ---- PUSH START ---- // ---- 
 
     Push:start()
-
+    -- love.graphics.scale(1,1)
 ---- // ---- START TO DRAW ---- // ---- 
 
     if GameState.current == "gamemenu" then
@@ -329,7 +387,17 @@ function love.draw()
         Paralax:draw()
         CampFire.draw()
     elseif GameState.current == "worldmap" then
-        WorldMap.draw()
+        WorldMap.draw({x = heroMapX, y = heroMapY})
+
+        local map = WorldMap.getMap()
+
+        if map then
+            local tileSize = map.tilewidth
+            local px = (heroMapX-1) * tileSize + tileSize/2
+            local py = (heroMapY-1) * tileSize + tileSize/2
+            
+            spriteManager:drawSpriteCentered("hero", px, py, 0.5, 0.5)
+        end
     elseif GameState.current == "expedition" then
         Paralax:draw()
         GameTime:draw()

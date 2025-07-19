@@ -16,7 +16,17 @@ function Resources:new()
         campfireCooking = "assets/img/sprite/campfire/campfireCooking.png",
         tent = "assets/img/sprite/campfire/tent.png",
 
-        -- interface
+        -- worldmap
+
+        default = "assets/img/sprite/worldmap/default.png",
+        plain = "assets/img/sprite/worldmap/plain.png",
+        forest = "assets/img/sprite/worldmap/forest.png",
+        desert = "assets/img/sprite/worldmap/desert.png",
+        mountain = "assets/img/sprite/worldmap/mountain.png",
+        river = "assets/img/sprite/worldmap/river.png",
+        house = "assets/img/sprite/worldmap/house.png",
+
+        -- expeditionHUD
         coin = "assets/img/spriteSheet/interface/coin_spriteSheet.png",
 
         -- hero
