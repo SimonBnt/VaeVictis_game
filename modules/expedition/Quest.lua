@@ -56,6 +56,8 @@ Quest.list = {
     },
 }
 
+-- ajouter une list pour chaque categorie : Quest.activeMain/Quest.activeHunt etc.
+
 Quest.active = {
 }
 
@@ -114,6 +116,13 @@ function Quest.draw()
             currentY = currentY + line_height * 1.5
         end
     end
+
+    -- changer en faissant le tri de chaque catégorie pour plus de clarté et logique de code, les quetes principales auront toujours au moins 2 conditions
+    -- créer des onglets/pages pour les catégories de quetes
+    -- ajouter animation de tournage de pages pour plus de profondeur
+    -- comprendre comment faire/utiliser un systeme de vérification de l'état des conditions => dans update peut etre ?
+    --  ajouter un systeme de "panneau de quete" pour selectionner certaines et les mettres dans les list active pour tester
+    -- ajouter un systeme de sauvegarde pour tester la fonctionnalité de sauvegarde qui servira de squellete pour le module final "Save.lua" et comprendre comment ca marche.
 end
 
 return Quest
