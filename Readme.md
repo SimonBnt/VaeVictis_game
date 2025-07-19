@@ -119,7 +119,7 @@ Vous etes maintenant pret pour partir à la chasse !
 
 At the moment, I’m planning 73 different monster types. You’ll find classic RPG enemies like rats, slimes, bats, skeletons, orcs, and many more — but also some more unusual creatures like mutant toads, giant snails, and eerie swamp creatures.
 
-All monsters are categorized by “Monster Rank” from E to S — with S being the rarest, most dangerous and fearsome, and E the most common and least threatening.
+All monsters are categorized by “Monster Rank” from F to S — with S being the rarest, most dangerous and fearsome, and E the most common and least threatening.
 
 Each monster has its preferred habitat and active time: some love sunny days, others lurk in dark forests at night, while some crawl through rainy swamps. It’s up to you to track them down, defeat them, and harvest their precious materials.
 

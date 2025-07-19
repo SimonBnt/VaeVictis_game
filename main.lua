@@ -49,6 +49,7 @@ local Tools = require("modules.expedition.inc.Tools")
 local Inventory = require("modules.expedition.Inventory")
 local GameTime = require("modules.expedition.GameTime")
 local Calendar = require("modules.expedition.Calendar")
+local Quest = require("modules.expedition.Quest")
 
 ---- // ---- SCREEN PARAMETERS ---- // ---- 
 
